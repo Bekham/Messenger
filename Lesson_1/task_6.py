@@ -32,7 +32,12 @@ import chardet
 #     file.close()
 
 with open('test_file.txt', 'rb') as f:
-    for line in f:
-        result = chardet.detect(line)
-        line = line.decode(result['encoding']).encode('utf-8')
-        print(line.decode('utf-8'))
+    content_b = f.read()
+    result = chardet.detect(content_b)
+    result_text = content_b.decode(result['encoding'])
+    with open('test_file.txt', 'w', encoding='utf-8') as f:
+        f.write(result_text)
+
+with open('test_file.txt', 'r', encoding='utf-8') as f:
+    content = f.read()
+print(content)
