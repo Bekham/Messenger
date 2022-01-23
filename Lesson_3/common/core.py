@@ -176,11 +176,13 @@ class MessengerCore:
         :param message:
         :return:
         '''
-        if RESPONSE in self.message_from_server:
-            if self.message_from_server[RESPONSE] == 200:
-                return 'Успешная авторизация... \n200 : OK'
-            return f'Ошибка 400 : {self.message_from_server[ERROR]}'
-        raise ValueError
+        try:
+            if RESPONSE in self.message_from_server:
+                if self.message_from_server[RESPONSE] == 200:
+                    return 'Успешная авторизация... \n200 : OK'
+                return f'Ошибка 400 : {self.message_from_server[ERROR]}'
+        except TypeError:
+            raise TypeError
 
 
 
