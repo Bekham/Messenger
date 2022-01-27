@@ -154,7 +154,7 @@ class MessengerCore:
             self.message_from_server = self.get_message(self.transport)
             answer = self.process_ans()
             self.CLIENT_LOGGER.info(f'Принят ответ от сервера {answer}')
-            print(answer)
+            # print(answer)
         except (ValueError, json.JSONDecodeError):
             self.CLIENT_LOGGER.error('Не удалось декодировать полученную Json строку.')
         except ReqFieldMissingError as missing_error:
@@ -191,7 +191,7 @@ class MessengerCore:
         try:
             if RESPONSE in self.message_from_server:
                 if self.message_from_server[RESPONSE] == 200:
-                    return 'Успешная авторизация... \n200 : OK'
+                    return 'Успешная авторизация... 200 : OK'
                 return f'Ошибка 400 : {self.message_from_server[ERROR]}'
             raise ReqFieldMissingError(RESPONSE)
         except TypeError:
