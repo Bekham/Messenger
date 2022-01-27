@@ -1,8 +1,14 @@
+import argparse
 import json
 import socket
 import sys
 import time
+import logging
 
+sys.path.append('../')
+import logs.config_client_log
+import logs.config_server_log
+from errors import ReqFieldMissingError, IncorrectDataRecivedError
 from common.variables import ACTION, ACCOUNT_NAME, RESPONSE, MAX_CONNECTIONS, \
     PRESENCE, TIME, USER, ERROR, DEFAULT_PORT, MAX_PACKAGE_LENGTH, ENCODING, DEFAULT_IP_ADDRESS
 
@@ -10,53 +16,40 @@ from common.variables import ACTION, ACCOUNT_NAME, RESPONSE, MAX_CONNECTIONS, \
 class MessengerCore:
 
     def __init__(self, start_server=False, start_client=False):
-        # self.listen_port = None
-        # self.listen_address = None
-        # self.transport = None
-        # self.message_from_client = None
-        # self.server_response = None
+
+        self.create_arg_parser()
         if start_server:
-            self.check_port_server()
-            self.check_address_server()
+            self.SERVER_LOGGER = logging.getLogger('server')
+            self.check_address_port_server()
             self.init_socket_server()
         elif start_client:
+            self.CLIENT_LOGGER = logging.getLogger('client')
             self.check_port_address_client()
             self.init_socket_client()
 
-    def check_port_server(self):
+    def create_arg_parser(self):
+        self.parser = argparse.ArgumentParser()
+        self.parser.add_argument('-p', default=DEFAULT_PORT, type=int, nargs='?')
+        self.parser.add_argument('-a', default='', nargs='?')
+        self.parser.add_argument('addr', default=DEFAULT_IP_ADDRESS, nargs='?')
+        self.parser.add_argument('port', default=DEFAULT_PORT, type=int, nargs='?')
+
+
+    def check_address_port_server(self):
         try:
-            if '-p' in sys.argv:
-                self.listen_port = int(sys.argv[sys.argv.index('-p') + 1])
-            else:
-                self.listen_port = DEFAULT_PORT
+            namespace = self.parser.parse_args(sys.argv[1:])
+            self.listen_address = namespace.a
+            self.listen_port = namespace.p
             if self.listen_port < 1024 or self.listen_port > 65535:
                 raise ValueError
-        except IndexError:
-            print('После параметра -\'p\' необходимо указать номер порта.')
-            sys.exit(1)
         except ValueError:
-            print(
-                'В качастве порта может быть указано только число в диапазоне от 1024 до 65535.')
+            self.SERVER_LOGGER.critical(f'Попытка запуска сервера с указанием неподходящего порта '
+                               f'{self.listen_port}. Допустимы адреса с 1024 до 65535.')
             sys.exit(1)
         else:
-            print(f'Задан порт сервера номер: {self.listen_port}')
-
-    def check_address_server(self):
-        try:
-            if '-a' in sys.argv:
-                self.listen_address = sys.argv[sys.argv.index('-a') + 1]
-            else:
-                self.listen_address = ''
-
-        except IndexError:
-            print(
-                'После параметра \'a\'- необходимо указать адрес, который будет слушать сервер.')
-            sys.exit(1)
-        else:
-            if self.listen_address == '':
-                print(f'Задан сетевой адрес сервера: 0.0.0.0')
-            else:
-                print(f'Задан сетевой адрес сервера: {self.listen_address}')
+            self.SERVER_LOGGER.info(f'Запущен сервер, порт для подключений: {self.listen_port}, '
+                               f'адрес с которого принимаются подключения: {self.listen_address}. '
+                               f'Если адрес не указан, принимаются соединения с любых адресов.')
 
     def init_socket_server(self):
         self.transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -64,21 +57,27 @@ class MessengerCore:
 
     def start_server_listen(self):
         self.transport.listen(MAX_CONNECTIONS)
-        print('Сервер запущен...')
+        self.SERVER_LOGGER.info('Сервер запущен...')
         while True:
             client, client_address = self.transport.accept()
+            self.SERVER_LOGGER.info(f'Установлено соедение с ПК {client_address}')
             try:
                 self.message_from_client = self.get_message(client)
-
-                print(f"Авторизация нового пользователя: {self.message_from_client['user']['account_name']}\n",
-                      self.message_from_client)
+                self.SERVER_LOGGER.debug(f'Получено сообщение {self.message_from_client}')
                 # {'action': 'presence', 'time': 1573760672.167031, 'user': {'account_name': 'Guest'}}
                 self.server_response = self.process_client_message()
+                self.SERVER_LOGGER.info(f'Cформирован ответ клиенту {self.server_response}')
                 self.message = self.server_response
                 self.send_message(client)
+                self.SERVER_LOGGER.debug(f'Соединение с клиентом {client_address} закрывается.')
                 client.close()
-            except (ValueError, json.JSONDecodeError):
-                print('Принято некорретное сообщение от клиента.')
+            except json.JSONDecodeError:
+                self.SERVER_LOGGER.error(f'Не удалось декодировать JSON строку, полученную от '
+                                    f'клиента {client_address}. Соединение закрывается.')
+                client.close()
+            except IncorrectDataRecivedError:
+                self.SERVER_LOGGER.error(f'От клиента {client_address} приняты некорректные данные. '
+                                    f'Соединение закрывается.')
                 client.close()
 
     def get_message(self, client):
@@ -107,6 +106,7 @@ class MessengerCore:
             :param message:
             :return:
             '''
+        self.SERVER_LOGGER.debug(f'Разбор сообщения от клиента : {self.message_from_client}')
         if ACTION in self.message_from_client \
                 and self.message_from_client[ACTION] == PRESENCE \
                 and TIME in self.message_from_client \
@@ -127,15 +127,18 @@ class MessengerCore:
         '''Загружаем параметы коммандной строки'''
         # client.py 192.168.1.2 8079
         try:
-            self.server_address = sys.argv[1]
-            self.server_port = int(sys.argv[2])
+            namespace = self.parser.parse_args(sys.argv[1:])
+            self.server_address = namespace.addr
+            self.server_port = namespace.port
             if self.server_port < 1024 or self.server_port > 65535:
                 raise ValueError
-        except IndexError:
-            self.server_address = DEFAULT_IP_ADDRESS
-            self.server_port = DEFAULT_PORT
+        # except IndexError:
+        #     self.server_address = DEFAULT_IP_ADDRESS
+        #     self.server_port = DEFAULT_PORT
         except ValueError:
-            print('В качестве порта может быть указано только число в диапазоне от 1024 до 65535.')
+            self.CLIENT_LOGGER.critical(
+                f'Попытка запуска клиента с неподходящим номером порта: {self.server_port}.'
+                f' Допустимы адреса с 1024 до 65535. Клиент завершается.')
             sys.exit(1)
 
     def init_socket_client(self):
@@ -145,14 +148,21 @@ class MessengerCore:
     def start_client_send(self):
         message_to_server = self.create_presence()
         self.message = message_to_server
-        self.send_message(self.transport)
-        print('Отправка запроса авторизации...')
         try:
+            self.send_message(self.transport)
+            self.CLIENT_LOGGER.info('Отправка запроса авторизации...')
             self.message_from_server = self.get_message(self.transport)
             answer = self.process_ans()
+            self.CLIENT_LOGGER.info(f'Принят ответ от сервера {answer}')
             print(answer)
         except (ValueError, json.JSONDecodeError):
-            print('Не удалось декодировать сообщение сервера.')
+            self.CLIENT_LOGGER.error('Не удалось декодировать полученную Json строку.')
+        except ReqFieldMissingError as missing_error:
+            self.CLIENT_LOGGER.error(f'В ответе сервера отсутствует необходимое поле '
+                                f'{missing_error.missing_field}')
+        except ConnectionRefusedError:
+            self.CLIENT_LOGGER.critical(f'Не удалось подключиться к серверу {self.server_address}:{self.server_port}, '
+                                   f'конечный компьютер отверг запрос на подключение.')
 
     def create_presence(self, account_name='Guest'):
         '''
@@ -168,6 +178,7 @@ class MessengerCore:
                 ACCOUNT_NAME: account_name
             }
         }
+        self.CLIENT_LOGGER.debug(f'Сформировано {PRESENCE} сообщение для пользователя {account_name}')
         return out
 
     def process_ans(self):
@@ -176,13 +187,14 @@ class MessengerCore:
         :param message:
         :return:
         '''
+        self.CLIENT_LOGGER.debug(f'Разбор сообщения от сервера: {self.message_from_server}')
         try:
             if RESPONSE in self.message_from_server:
                 if self.message_from_server[RESPONSE] == 200:
                     return 'Успешная авторизация... \n200 : OK'
                 return f'Ошибка 400 : {self.message_from_server[ERROR]}'
+            raise ReqFieldMissingError(RESPONSE)
         except TypeError:
+            self.CLIENT_LOGGER.critical(
+                f'Критическая ошибка! Неверный формат/тип сообщения от сервера: {self.message_from_server}')
             raise TypeError
-
-
-
