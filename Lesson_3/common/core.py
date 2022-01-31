@@ -5,18 +5,17 @@ import sys
 import time
 import logging
 
+
 sys.path.append('../')
-import logs.config_client_log
-import logs.config_server_log
+from common.decos import Log
 from errors import ReqFieldMissingError, IncorrectDataRecivedError
 from common.variables import ACTION, ACCOUNT_NAME, RESPONSE, MAX_CONNECTIONS, \
     PRESENCE, TIME, USER, ERROR, DEFAULT_PORT, MAX_PACKAGE_LENGTH, ENCODING, DEFAULT_IP_ADDRESS
 
 
 class MessengerCore:
-
+    @Log()
     def __init__(self, start_server=False, start_client=False):
-
         self.create_arg_parser()
         if start_server:
             self.SERVER_LOGGER = logging.getLogger('server')
@@ -34,7 +33,7 @@ class MessengerCore:
         self.parser.add_argument('addr', default=DEFAULT_IP_ADDRESS, nargs='?')
         self.parser.add_argument('port', default=DEFAULT_PORT, type=int, nargs='?')
 
-
+    @Log()
     def check_address_port_server(self):
         try:
             namespace = self.parser.parse_args(sys.argv[1:])
@@ -55,6 +54,7 @@ class MessengerCore:
         self.transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.transport.bind((self.listen_address, self.listen_port))
 
+    @Log()
     def start_server_listen(self):
         self.transport.listen(MAX_CONNECTIONS)
         self.SERVER_LOGGER.info('Сервер запущен...')
@@ -97,6 +97,7 @@ class MessengerCore:
             raise ValueError
         raise ValueError
 
+    @Log()
     def process_client_message(self):
         '''
             Обработчик сообщений от клиентов, принимает словарь -
@@ -123,6 +124,7 @@ class MessengerCore:
         encoded_message = js_message.encode(ENCODING)
         socket.send(encoded_message)
 
+    @Log()
     def check_port_address_client(self):
         '''Загружаем параметы коммандной строки'''
         # client.py 192.168.1.2 8079
@@ -145,6 +147,7 @@ class MessengerCore:
         self.transport = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.transport.connect((self.server_address, self.server_port))
 
+    @Log()
     def start_client_send(self):
         message_to_server = self.create_presence()
         self.message = message_to_server
@@ -164,6 +167,7 @@ class MessengerCore:
             self.CLIENT_LOGGER.critical(f'Не удалось подключиться к серверу {self.server_address}:{self.server_port}, '
                                    f'конечный компьютер отверг запрос на подключение.')
 
+    @Log()
     def create_presence(self, account_name='Guest'):
         '''
             Функция генерирует запрос о присутствии клиента
@@ -181,6 +185,7 @@ class MessengerCore:
         self.CLIENT_LOGGER.debug(f'Сформировано {PRESENCE} сообщение для пользователя {account_name}')
         return out
 
+    @Log()
     def process_ans(self):
         '''
         Функция разбирает ответ сервера

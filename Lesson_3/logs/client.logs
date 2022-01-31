@@ -24,3 +24,59 @@
 2022-01-27 20:49:42,854 DEBUG core.py Разбор сообщения от сервера: {'response': 200}
 2022-01-27 20:49:42,854 INFO core.py Принят ответ от сервера Успешная авторизация... 
 200 : OK
+2022-01-31 21:29:46,390 CRITICAL config_client_log.py Критическая ошибка
+2022-01-31 21:29:46,406 ERROR config_client_log.py Ошибка
+2022-01-31 21:29:46,406 DEBUG config_client_log.py Отладочная информация
+2022-01-31 21:29:46,406 INFO config_client_log.py Информационное сообщение
+2022-01-31 21:31:38,145 DEBUG core.py Сформировано presence сообщение для пользователя Guest
+2022-01-31 21:31:38,176 INFO core.py Отправка запроса авторизации...
+2022-01-31 21:31:38,176 DEBUG core.py Разбор сообщения от сервера: {'response': 200}
+2022-01-31 21:31:38,176 INFO core.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-01-31 21:35:30,145 DEBUG core.py Сформировано presence сообщение для пользователя Guest
+2022-01-31 21:35:30,145 INFO core.py Отправка запроса авторизации...
+2022-01-31 21:35:30,160 DEBUG core.py Разбор сообщения от сервера: {'response': 200}
+2022-01-31 21:35:30,160 INFO core.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-01-31 21:40:48,410 DEBUG decos.py Была вызвана функция check_port_address_client c параметрами (<common.core.MessengerCore object at 0x000002014FA28760>,), {}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-01-31 21:40:48,410 DEBUG core.py Сформировано presence сообщение для пользователя Guest
+2022-01-31 21:40:48,456 DEBUG decos.py Была вызвана функция create_presence c параметрами (<common.core.MessengerCore object at 0x000002014FA28760>,), {}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_client_send
+2022-01-31 21:40:48,456 INFO core.py Отправка запроса авторизации...
+2022-01-31 21:40:48,456 DEBUG core.py Разбор сообщения от сервера: {'response': 200}
+2022-01-31 21:40:48,472 DEBUG decos.py Была вызвана функция process_ans c параметрами (<common.core.MessengerCore object at 0x000002014FA28760>,), {}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_client_send
+2022-01-31 21:40:48,472 INFO core.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-01-31 21:40:48,472 DEBUG decos.py Была вызвана функция start_client_send c параметрами (<common.core.MessengerCore object at 0x000002014FA28760>,), {}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-01-31 21:48:50,339 DEBUG decos.py Была вызвана функция check_port_address_client c параметрами (<common.core.MessengerCore object at 0x000001452A2B7760>,), {}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-01-31 21:48:50,339 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x000001452A2B7760>,), {'start_client': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-01-31 21:48:50,339 DEBUG core.py Сформировано presence сообщение для пользователя Guest
+2022-01-31 21:48:50,339 DEBUG decos.py Была вызвана функция create_presence c параметрами (<common.core.MessengerCore object at 0x000001452A2B7760>,), {}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_client_send
+2022-01-31 21:48:50,339 INFO core.py Отправка запроса авторизации...
+2022-01-31 21:48:50,339 DEBUG core.py Разбор сообщения от сервера: {'response': 200}
+2022-01-31 21:48:50,339 DEBUG decos.py Была вызвана функция process_ans c параметрами (<common.core.MessengerCore object at 0x000001452A2B7760>,), {}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_client_send
+2022-01-31 21:48:50,339 INFO core.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-01-31 21:48:50,339 DEBUG decos.py Была вызвана функция start_client_send c параметрами (<common.core.MessengerCore object at 0x000001452A2B7760>,), {}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-01-31 21:53:00,648 DEBUG decos.py Была вызвана функция check_port_address_client c параметрами (<common.core.MessengerCore object at 0x00000250E54A7760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-01-31 21:53:00,711 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x00000250E54A7760>,), {'start_client': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-01-31 21:53:00,711 DEBUG core.py Сформировано presence сообщение для пользователя Guest
+2022-01-31 21:53:00,711 DEBUG decos.py Была вызвана функция create_presence c параметрами (<common.core.MessengerCore object at 0x00000250E54A7760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_client_send
+2022-01-31 21:53:00,742 INFO core.py Отправка запроса авторизации...
+2022-01-31 21:53:00,742 DEBUG core.py Разбор сообщения от сервера: {'response': 200}
+2022-01-31 21:53:00,742 DEBUG decos.py Была вызвана функция process_ans c параметрами (<common.core.MessengerCore object at 0x00000250E54A7760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_client_send
+2022-01-31 21:53:00,742 INFO core.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-01-31 21:53:00,742 DEBUG decos.py Была вызвана функция start_client_send c параметрами (<common.core.MessengerCore object at 0x00000250E54A7760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-01-31 22:05:22,646 DEBUG decos.py Была вызвана функция check_port_address_client c параметрами (<common.core.MessengerCore object at 0x000002ABD8C47760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-01-31 22:05:22,662 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x000002ABD8C47760>,), {'start_client': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-01-31 22:05:22,662 DEBUG core.py Сформировано presence сообщение для пользователя Guest
+2022-01-31 22:05:22,677 DEBUG decos.py Была вызвана функция create_presence c параметрами (<common.core.MessengerCore object at 0x000002ABD8C47760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_client_send
+2022-01-31 22:05:22,677 INFO core.py Отправка запроса авторизации...
+2022-01-31 22:05:22,677 DEBUG core.py Разбор сообщения от сервера: {'response': 200}
+2022-01-31 22:05:22,677 DEBUG decos.py Была вызвана функция process_ans c параметрами (<common.core.MessengerCore object at 0x000002ABD8C47760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_client_send
+2022-01-31 22:05:22,677 INFO core.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-01-31 22:05:22,677 DEBUG decos.py Была вызвана функция start_client_send c параметрами (<common.core.MessengerCore object at 0x000002ABD8C47760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-01-31 22:05:28,133 DEBUG decos.py Была вызвана функция check_port_address_client c параметрами (<common.core.MessengerCore object at 0x000001D8C0747760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-01-31 22:05:28,133 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x000001D8C0747760>,), {'start_client': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-01-31 22:05:28,133 DEBUG core.py Сформировано presence сообщение для пользователя Guest
+2022-01-31 22:05:28,133 DEBUG decos.py Была вызвана функция create_presence c параметрами (<common.core.MessengerCore object at 0x000001D8C0747760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_client_send
+2022-01-31 22:05:28,149 INFO core.py Отправка запроса авторизации...
+2022-01-31 22:05:28,149 DEBUG core.py Разбор сообщения от сервера: {'response': 200}
+2022-01-31 22:05:28,149 DEBUG decos.py Была вызвана функция process_ans c параметрами (<common.core.MessengerCore object at 0x000001D8C0747760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_client_send
+2022-01-31 22:05:28,149 INFO core.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-01-31 22:05:28,149 DEBUG decos.py Была вызвана функция start_client_send c параметрами (<common.core.MessengerCore object at 0x000001D8C0747760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
