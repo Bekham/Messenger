@@ -3,15 +3,17 @@ import json
 import select
 import socket
 import sys
+import threading
 import time
 import logging
+from threading import Thread
 
 sys.path.append('../')
 from common.decos import Log
 from errors import ReqFieldMissingError, IncorrectDataRecivedError, ServerError
 from common.variables import DEFAULT_PORT, DEFAULT_IP_ADDRESS, \
     ACTION, TIME, USER, ACCOUNT_NAME, SENDER, PRESENCE, RESPONSE, ERROR, MESSAGE, MESSAGE_TEXT, \
-    ENCODING, MAX_CONNECTIONS, MAX_PACKAGE_LENGTH
+    ENCODING, MAX_CONNECTIONS, MAX_PACKAGE_LENGTH, DESTINATION, EXIT
 
 
 class MessengerCore:
@@ -25,6 +27,9 @@ class MessengerCore:
         self.messages = []
         self.message_from_client = None
         self.message_from_server = None
+        self.clients_names = {}
+        self.clients_list = []
+
 
         # self.create_arg_parser()
         if start_server:
@@ -88,7 +93,8 @@ class MessengerCore:
     @Log()
     def start_server_listen(self):
         # список клиентов , очередь сообщений
-        clients = []
+        self.clients_list = []
+        self.messages = []
         # Слушаем порт
         self.transport.listen(MAX_CONNECTIONS)
         self.SERVER_LOGGER.info('Сервер запущен...')
@@ -101,14 +107,14 @@ class MessengerCore:
 
             else:
                 self.SERVER_LOGGER.info(f'Установлено соедение с ПК {client_address}')
-                clients.append(client)
+                self.clients_list.append(client)
             recv_data_lst = []
             send_data_lst = []
             err_lst = []
             # Проверяем на наличие ждущих клиентов
             try:
-                if clients:
-                    recv_data_lst, send_data_lst, err_lst = select.select(clients, clients, [], 0)
+                if self.clients_list:
+                    recv_data_lst, send_data_lst, err_lst = select.select(self.clients_list, self.clients_list, [], 0)
             except OSError:
                 pass
             if recv_data_lst:
@@ -119,21 +125,75 @@ class MessengerCore:
                     except:
                         self.SERVER_LOGGER.info(f'Клиент {client_with_message.getpeername()} '
                                                 f'отключился от сервера.')
-                        clients.remove(client_with_message)
+                        self.clients_list.remove(client_with_message)
             if self.messages and send_data_lst:
-                self.message = {
-                    ACTION: MESSAGE,
-                    SENDER: self.messages[0][0],
-                    TIME: time.time(),
-                    MESSAGE_TEXT: self.messages[0][1]
-                }
-                del self.messages[0]
-                for waiting_client in send_data_lst:
+                for i in self.messages:
                     try:
-                        self.send_message(waiting_client)
-                    except:
-                        self.SERVER_LOGGER.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
-                        clients.remove(waiting_client)
+                        self.message = i
+                        self.process_message(send_data_lst)
+                    except Exception:
+                        self.SERVER_LOGGER.info(f'Связь с клиентом с именем {i[DESTINATION]} была потеряна')
+                        self.clients_list.remove(self.clients_names[i[DESTINATION]])
+                        del self.clients_names[i[DESTINATION]]
+                self.messages.clear()
+                # self.message = {
+                #     ACTION: MESSAGE,
+                #     SENDER: self.messages[0][0],
+                #     TIME: time.time(),
+                #     MESSAGE_TEXT: self.messages[0][1]
+                # }
+                # del self.messages[0]
+                # for waiting_client in send_data_lst:
+                #     try:
+                #         self.send_message(waiting_client)
+                #     except:
+                #         self.SERVER_LOGGER.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
+                #         self.clients_list.remove(waiting_client)
+
+    @Log()
+    def process_message(self, listen_socks):
+        """
+        Функция адресной отправки сообщения определённому клиенту. Принимает словарь сообщение,
+        список зарегистрированых пользователей и слушающие сокеты. Ничего не возвращает.
+        :param message:
+        :param names:
+        :param listen_socks:
+        :return:
+        """
+
+        if self.message[DESTINATION] in self.clients_names \
+                and self.clients_names[self.message[DESTINATION]] in listen_socks:
+            self.send_message(self.clients_names[self.message[DESTINATION]])
+            self.SERVER_LOGGER.info(f'Отправлено сообщение пользователю {self.message[DESTINATION]} '
+                        f'от пользователя {self.message[SENDER]}.')
+        elif self.message[DESTINATION] in self.clients_names \
+                and self.clients_names[self.message[DESTINATION]] not in listen_socks:
+            raise ConnectionError
+
+        elif ACTION in self.message \
+                and self.message[ACTION] == MESSAGE \
+                and DESTINATION not in self.message \
+                and SENDER not in self.message:
+            self.message = {
+                ACTION: MESSAGE,
+                SENDER: self.message[0],
+                TIME: time.time(),
+                MESSAGE_TEXT: self.message[1]
+            }
+            for waiting_client in listen_socks:
+                try:
+                    self.send_message(waiting_client)
+                except:
+                    self.SERVER_LOGGER.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
+                    self.clients_list.remove(waiting_client)
+            return
+        else:
+            self.SERVER_LOGGER.error(
+                f'Пользователь {self.message[DESTINATION]} не зарегистрирован на сервере, '
+                f'отправка сообщения невозможна.')
+
+
+
 
     def get_message(self, client):
         '''
@@ -166,20 +226,48 @@ class MessengerCore:
                 and self.message_from_client[ACTION] == PRESENCE \
                 and TIME in self.message_from_client \
                 and USER in self.message_from_client \
-                and self.message_from_client[USER][ACCOUNT_NAME] == 'Guest':
-            self.message = {RESPONSE: 200}
-            self.send_message(client_with_message)
+                and len(self.message_from_client[USER][ACCOUNT_NAME]) > 0:
+            if self.message_from_client[USER][ACCOUNT_NAME] not in self.clients_names.keys():
+                self.clients_names[self.message_from_client[USER][ACCOUNT_NAME]] = client_with_message
+                self.message = {RESPONSE: 200}
+                self.send_message(client_with_message)
+            else:
+                self.message = {RESPONSE: 400}
+                self.message[ERROR] = 'Имя пользователя уже занято.'
+                self.send_message(client_with_message)
+                self.clients_list.remove(client_with_message)
+                client_with_message.close()
             return
         elif ACTION in self.message_from_client \
                 and self.message_from_client[ACTION] == MESSAGE \
                 and TIME in self.message_from_client \
+                and DESTINATION not in self.message_from_client \
+                and SENDER not in self.message_from_client \
                 and MESSAGE_TEXT in self.message_from_client:
-            self.messages.append((self.message_from_client[ACCOUNT_NAME], self.message_from_client[MESSAGE_TEXT]))
+            self.messages.append(self.message_from_client)
+            return
+        # Если это сообщение, то добавляем его в очередь сообщений.
+        # Ответ не требуется.
+        elif ACTION in self.message_from_client \
+            and self.message_from_client[ACTION] == MESSAGE \
+                and DESTINATION in self.message_from_client \
+                and TIME in self.message_from_client \
+                and SENDER in self.message_from_client \
+                and MESSAGE_TEXT in self.message_from_client:
+            self.messages.append(self.message_from_client)
+            return
+            # Если клиент выходит
+        elif ACTION in self.message_from_client \
+                and self.message_from_client[ACTION] == EXIT \
+                and ACCOUNT_NAME in self.message_from_client:
+            self.clients_list.remove(self.clients_names[self.message_from_client[ACCOUNT_NAME]])
+            self.clients_names[self.message_from_client[ACCOUNT_NAME]].close()
+            del self.clients_names[self.message_from_client[ACCOUNT_NAME]]
             return
         else:
             self.message = {
                 RESPONSE: 400,
-                ERROR: 'Bad Request'
+                ERROR: 'Запрос некорректен.'
             }
             self.send_message(client_with_message)
             return
@@ -196,7 +284,7 @@ class MessengerCore:
         parser = argparse.ArgumentParser()
         parser.add_argument('addr', default=DEFAULT_IP_ADDRESS, nargs='?')
         parser.add_argument('port', default=DEFAULT_PORT, type=int, nargs='?')
-        parser.add_argument('-m', '--mode', default='listen', nargs='?')
+        parser.add_argument('-m', '--mode', default='chat', nargs='?')
         namespace = parser.parse_args(sys.argv[1:])
         self.server_address = namespace.addr
         self.server_port = namespace.port
@@ -210,9 +298,9 @@ class MessengerCore:
             sys.exit(1)
 
         # Проверим допустим ли выбранный режим работы клиента
-        if self.client_mode not in ('listen', 'send'):
+        if self.client_mode not in ('listen', 'send', 'chat'):
             self.CLIENT_LOGGER.critical(f'Указан недопустимый режим работы {self.client_mode}, '
-                                        f'допустимые режимы: listen , send')
+                                        f'допустимые режимы: listen , send, chat')
             sys.exit(1)
         return self.server_address, self.server_port, self.client_mode
 
@@ -230,8 +318,14 @@ class MessengerCore:
             sys.exit(1)
 
     def start_client_send(self):
-        message_to_server = self.create_presence()
-        self.message = message_to_server
+        self.client_name = input('Авторизуйтесь, пожалуйста! Введите Ваш логин: ')
+
+        if len(self.client_name) > 0:
+            message_to_server = self.create_presence(account_name=self.client_name)
+            self.message = message_to_server
+        else:
+            print('Данные введены неверно!')
+            self.start_client_send()
 
         try:
             self.send_message(self.transport)
@@ -249,38 +343,64 @@ class MessengerCore:
             self.CLIENT_LOGGER.error(f'В ответе сервера отсутствует необходимое поле '
                                      f'{missing_error.missing_field}')
             sys.exit(1)
-        except ConnectionRefusedError:
-            self.CLIENT_LOGGER.critical(f'Не удалось подключиться к серверу {self.server_address}:{self.server_port}, '
-                                        f'конечный компьютер отверг запрос на подключение.')
+        except (ConnectionRefusedError, ConnectionError):
+            self.CLIENT_LOGGER.critical (f'Не удалось подключиться к серверу {self.server_address}:{self.server_port}, '
+            f'конечный компьютер отверг запрос на подключение.')
             sys.exit(1)
         else:
             # Если соединение с сервером установлено корректно,
             # начинаем обмен с ним, согласно требуемому режиму.
             # основной цикл прогрммы:
+
             if self.client_mode == 'send':
                 self.CLIENT_LOGGER.info('Режим работы - отправка сообщений.')
                 print('Режим работы - отправка сообщений.')
-            else:
+                while True:
+                    # режим работы - отправка сообщений
+                    if self.client_mode == 'send':
+                        try:
+                            self.message = self.create_message()
+                            self.send_message(self.transport)
+                        except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
+                            self.CLIENT_LOGGER.error(f'Соединение с сервером {self.server_address} было потеряно.')
+                            sys.exit(1)
+            elif self.client_mode == 'listen':
                 self.CLIENT_LOGGER.info('Режим работы - приём сообщений.')
                 print('Режим работы - приём сообщений.')
-            while True:
-                # режим работы - отправка сообщений
-                if self.client_mode == 'send':
-                    try:
-                        self.message = self.create_message()
-                        self.send_message(self.transport)
-                    except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
-                        self.CLIENT_LOGGER.error(f'Соединение с сервером {self.server_address} было потеряно.')
-                        sys.exit(1)
+                while True:
+                    # Режим работы приём:
+                    if self.client_mode == 'listen':
+                        try:
+                            self.message_from_server = self.get_message(self.transport)
+                            self.read_message_from_server()
+                        except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
+                            self.CLIENT_LOGGER.error(f'Соединение с сервером {self.server_address} было потеряно.')
+                            sys.exit(1)
 
-                # Режим работы приём:
-                if self.client_mode == 'listen':
-                    try:
-                        self.message_from_server = self.get_message(self.transport)
-                        self.read_message_from_server()
-                    except (ConnectionResetError, ConnectionError, ConnectionAbortedError):
-                        self.CLIENT_LOGGER.error(f'Соединение с сервером {self.server_address} было потеряно.')
-                        sys.exit(1)
+            else:
+                self.CLIENT_LOGGER.info('Режим работы - чат.')
+                # Если соединение с сервером установлено корректно,
+                # запускаем клиенский процесс приёма сообщний
+                receiver = threading.Thread(target=self.message_from_server_chat_mode, args=())
+                receiver.daemon = True
+                receiver.start()
+
+                # затем запускаем отправку сообщений и взаимодействие с пользователем.
+                user_interface = threading.Thread(target=self.user_interactive, args=())
+                user_interface.daemon = True
+                user_interface.start()
+                self.CLIENT_LOGGER.debug('Запущены процессы')
+
+                # Watchdog основной цикл, если один из потоков завершён,
+                # то значит или потеряно соединение или пользователь
+                # ввёл exit. Поскольку все события обработываются в потоках,
+                # достаточно просто завершить цикл.
+                while True:
+                    time.sleep(1)
+                    if receiver.is_alive() and user_interface.is_alive():
+                        continue
+                    break
+
 
     @Log()
     def create_presence(self, account_name='Guest'):
@@ -294,7 +414,7 @@ class MessengerCore:
             ACTION: PRESENCE,
             TIME: time.time(),
             USER: {
-                ACCOUNT_NAME: account_name
+                ACCOUNT_NAME: self.client_name
             }
         }
         self.CLIENT_LOGGER.debug(f'Сформировано {PRESENCE} сообщение для пользователя {account_name}')
@@ -335,7 +455,7 @@ class MessengerCore:
         message_dict = {
             ACTION: MESSAGE,
             TIME: time.time(),
-            ACCOUNT_NAME: account_name,
+            ACCOUNT_NAME: self.client_name,
             MESSAGE_TEXT: message
         }
         self.CLIENT_LOGGER.debug(f'Сформирован словарь сообщения: {message_dict}')
@@ -352,3 +472,87 @@ class MessengerCore:
                                     f'{self.message_from_server[SENDER]}:\n{self.message_from_server[MESSAGE_TEXT]}')
         else:
             self.CLIENT_LOGGER.error(f'Получено некорректное сообщение с сервера: {self.message_from_server}')
+
+    @Log()
+    def message_from_server_chat_mode(self):
+        """Функция - обработчик сообщений других пользователей, поступающих с сервера"""
+        while True:
+            try:
+                message = self.get_message(self.transport)
+                if ACTION in message and message[ACTION] == MESSAGE and \
+                        SENDER in message and DESTINATION in message \
+                        and MESSAGE_TEXT in message and message[DESTINATION] == self.client_name:
+                    print(f'\n{message[SENDER]}: '
+                          f'{message[MESSAGE_TEXT]}')
+                    print(f'{self.client_name}: ', end='')
+                    self.CLIENT_LOGGER.info(f'Получено сообщение от пользователя {message[SENDER]}:'
+                                f'\n{message[MESSAGE_TEXT]}')
+                else:
+                    self.CLIENT_LOGGER.error(f'Получено некорректное сообщение с сервера: {message}')
+            except IncorrectDataRecivedError:
+                self.CLIENT_LOGGER.error(f'Не удалось декодировать полученное сообщение.')
+            except (OSError, ConnectionError, ConnectionAbortedError,
+                    ConnectionResetError, json.JSONDecodeError):
+                self.CLIENT_LOGGER.critical(f'Потеряно соединение с сервером.')
+                break
+
+    @Log()
+    def user_interactive(self):
+        """Функция взаимодействия с пользователем, запрашивает команды, отправляет сообщения"""
+        self.print_help()
+        while True:
+            command = input(f'{self.client_name}: ')
+            if command.startswith('/help'.lower()):
+                self.print_help()
+            elif command.startswith('/exit'.lower()):
+                self.message = self.create_exit_message()
+                self.send_message(self.transport)
+                print('Завершение соединения.')
+                self.CLIENT_LOGGER.info('Завершение работы по команде пользователя.')
+                # Задержка неоходима, чтобы успело уйти сообщение о выходе
+                time.sleep(0.5)
+                break
+            elif len(command.split(' ')) >= 2:
+                msg_to_user = ' '.join(command.split(' ')[1:])
+                to_user = command.split(' ')[0]
+                self.create_chat_message(to_user=to_user, msg_to_user=msg_to_user)
+            else:
+                print('Команда не распознана, попробойте снова. /help - вывести поддерживаемые команды.')
+
+    def print_help(self):
+        """Функция выводящяя справку по использованию"""
+        print('Поддерживаемые команды:')
+        print('[Имя получателя] [Текст сообщения] - отправить сообщение')
+        print('/help - вывести подсказки по командам')
+        print('/exit - выход из программы')
+
+    def create_exit_message(self):
+        return {
+            ACTION: EXIT,
+            TIME: time.time(),
+            ACCOUNT_NAME: self.client_name
+        }
+
+    @Log()
+    def create_chat_message(self, to_user, msg_to_user):
+        """
+        Функция запрашивает кому отправить сообщение и само сообщение,
+        и отправляет полученные данные на сервер
+        :param sock:
+        :param account_name:
+        :return:
+        """
+        self.message = {
+            ACTION: MESSAGE,
+            SENDER: self.client_name,
+            DESTINATION: to_user,
+            TIME: time.time(),
+            MESSAGE_TEXT: msg_to_user
+        }
+        self.CLIENT_LOGGER.debug(f'Сформирован словарь сообщения: {self.message}')
+        try:
+            self.send_message(self.transport)
+            self.CLIENT_LOGGER.info(f'Отправлено сообщение для пользователя {to_user}')
+        except:
+            self.CLIENT_LOGGER.critical('Потеряно соединение с сервером.')
+            sys.exit(1)
