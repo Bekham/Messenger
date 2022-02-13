@@ -7,26 +7,26 @@
  """
 
 from subprocess import Popen, PIPE
-from ipaddress import ip_address
+from ipaddress import ip_address as ip
 
 
 def host_ping(ip_address_list, timeout=5000, requests=1):
     for ip_address in ip_address_list:
         try:
-            ip_address = ip_address(ip_address)
+            ip_address = ip(ip_address)
         except ValueError:
             pass
         args = f'ping {ip_address} -n {requests} -w {timeout}'
         reply = Popen(args, stdout=PIPE, stderr=PIPE)
         code = reply.wait()
-        print(code)
         if code:
-            print('Узел недоступен')
+            print(f'{ip_address} : Узел недоступен')
             return False
         else:
-            print('Узел доступен')
+            print(f'{ip_address} : Узел доступен')
             return True
 
 
-ip_addresses = ['google.com', 'f', 'ya.ru', '77.88.55.70']
-host_ping(ip_addresses)
+if __name__ == '__main__':
+    ip_addresses = ['google.com', 'f', 'ya.ru', '77.88.55.70']
+    host_ping(ip_addresses)
