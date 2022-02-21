@@ -4,6 +4,9 @@ import sys
 import logging
 import traceback
 import inspect
+
+from common.meta import ServerMaker
+
 sys.path.append('../')
 import logs.config_server_log
 import logs.config_client_log
@@ -28,6 +31,7 @@ class Log:
     def __call__(self, func_to_log):
         def log_saver(*args, **kwargs):
             """Обертка"""
+
             ret = func_to_log(*args, **kwargs)
             if args and kwargs:
                 args_kwargs = f'{args}, {kwargs}'
@@ -41,3 +45,10 @@ class Log:
                          f'Вызов из функции {inspect.stack()[1][3]}')
             return ret
         return log_saver
+
+def log(func_to_log):
+    def log_saver(*args , **kwargs):
+        LOGGER.debug(f'Была вызвана функция {func_to_log.__name__} c параметрами {args} , {kwargs}. Вызов из модуля {func_to_log.__module__}')
+        ret = func_to_log(*args , **kwargs)
+        return ret
+    return log_saver

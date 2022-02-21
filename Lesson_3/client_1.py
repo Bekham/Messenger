@@ -1,8 +1,9 @@
-from common.core import MessengerCore
+from common.core_client import MessengerClientCore, arg_parser_client
 
 
 def main():
-    start_client = MessengerCore(start_client=True)
+    server_address, server_port, client_mode = arg_parser_client()
+    start_client = MessengerClientCore(server_address, server_port, client_mode)
     start_client.start_client_send()
 
 

@@ -1428,3 +1428,123 @@ Fac
 2022-02-10 14:08:35,614 CRITICAL core.py Потеряно соединение с сервером.
 2022-02-10 14:08:35,614 DEBUG decos.py Была вызвана функция message_from_server_chat_mode c параметрами (<common.core.MessengerCore object at 0x00000227490E8760>,). Вызов из модуля common.core. Вызов из функции self._bootstrap_inner().Вызов из функции run
 2022-02-10 14:08:35,692 DEBUG decos.py Была вызвана функция user_interactive c параметрами (<common.core.MessengerCore object at 0x00000227490E8760>,). Вызов из модуля common.core. Вызов из функции self._bootstrap_inner().Вызов из функции run
+2022-02-17 20:42:46,222 DEBUG decos.py Была вызвана функция arg_parser_client c параметрами (<common.core_client.MessengerClientCore object at 0x00000216C56C8760>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции __init__
+2022-02-17 20:42:46,237 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7786, режим работы: chat
+2022-02-17 20:42:46,237 DEBUG decos.py Была вызвана функция init_socket_client c параметрами (<common.core_client.MessengerClientCore object at 0x00000216C56C8760>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции __init__
+2022-02-17 20:42:46,237 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core_client.MessengerClientCore object at 0x00000216C56C8760>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции main
+2022-02-17 20:42:49,284 DEBUG core_client.py Сформировано presence сообщение для пользователя 1
+2022-02-17 20:42:49,284 DEBUG decos.py Была вызвана функция create_presence c параметрами (<common.core_client.MessengerClientCore object at 0x00000216C56C8760>,), {'account_name': '1'}. Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции start_client_send
+2022-02-17 20:42:49,300 INFO core_client.py Отправка запроса авторизации...
+2022-02-17 20:42:49,347 DEBUG core_client.py Разбор сообщения от сервера: {'response': 200}
+2022-02-17 20:42:49,347 DEBUG decos.py Была вызвана функция process_ans c параметрами (<common.core_client.MessengerClientCore object at 0x00000216C56C8760>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции start_client_send
+2022-02-17 20:42:49,347 INFO core_client.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-02-17 20:42:49,347 INFO core_client.py Режим работы - чат.
+2022-02-17 20:42:49,347 DEBUG core_client.py Запущены процессы
+2022-02-17 20:43:22,710 DEBUG decos.py Была вызвана функция arg_parser_client c параметрами (<common.core_client.MessengerClientCore object at 0x0000017285C68760>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции __init__
+2022-02-17 20:43:22,710 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7786, режим работы: chat
+2022-02-17 20:43:22,710 DEBUG decos.py Была вызвана функция init_socket_client c параметрами (<common.core_client.MessengerClientCore object at 0x0000017285C68760>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции __init__
+2022-02-17 20:43:22,710 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core_client.MessengerClientCore object at 0x0000017285C68760>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции main
+2022-02-17 20:43:24,601 DEBUG core_client.py Сформировано presence сообщение для пользователя 2
+2022-02-17 20:43:24,601 DEBUG decos.py Была вызвана функция create_presence c параметрами (<common.core_client.MessengerClientCore object at 0x0000017285C68760>,), {'account_name': '2'}. Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции start_client_send
+2022-02-17 20:43:24,601 INFO core_client.py Отправка запроса авторизации...
+2022-02-17 20:43:24,757 DEBUG core_client.py Разбор сообщения от сервера: {'response': 200}
+2022-02-17 20:43:24,757 DEBUG decos.py Была вызвана функция process_ans c параметрами (<common.core_client.MessengerClientCore object at 0x0000017285C68760>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции start_client_send
+2022-02-17 20:43:24,757 INFO core_client.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-02-17 20:43:24,757 INFO core_client.py Режим работы - чат.
+2022-02-17 20:43:24,757 DEBUG core_client.py Запущены процессы
+2022-02-17 20:43:28,538 DEBUG core_client.py Сформирован словарь сообщения: {'action': 'message', 'sender': '2', 'to': '1', 'time': 1645109008.5388825, 'mess_text': 'tt'}
+2022-02-17 20:43:28,538 INFO core_client.py Отправлено сообщение для пользователя 1
+2022-02-17 20:43:28,679 DEBUG decos.py Была вызвана функция create_chat_message c параметрами (<common.core_client.MessengerClientCore object at 0x0000017285C68760>,), {'to_user': '1', 'msg_to_user': 'tt'}. Вызов из модуля common.core_client. Вызов из функции self._bootstrap_inner().Вызов из функции user_interactive
+2022-02-17 20:43:28,867 INFO core_client.py Получено сообщение от пользователя 2:
+tt
+2022-02-17 20:43:31,835 DEBUG core_client.py Сформирован словарь сообщения: {'action': 'message', 'sender': '2', 'to': '1', 'time': 1645109011.8357077, 'mess_text': 'rrr'}
+2022-02-17 20:43:31,835 INFO core_client.py Отправлено сообщение для пользователя 1
+2022-02-17 20:43:31,835 DEBUG decos.py Была вызвана функция create_chat_message c параметрами (<common.core_client.MessengerClientCore object at 0x0000017285C68760>,), {'to_user': '1', 'msg_to_user': 'rrr'}. Вызов из модуля common.core_client. Вызов из функции self._bootstrap_inner().Вызов из функции user_interactive
+2022-02-17 20:43:31,960 INFO core_client.py Получено сообщение от пользователя 2:
+rrr
+2022-02-17 20:43:34,241 DEBUG core_client.py Сформирован словарь сообщения: {'action': 'message', 'sender': '2', 'to': '2', 'time': 1645109014.241879, 'mess_text': 'fff'}
+2022-02-17 20:43:34,241 INFO core_client.py Отправлено сообщение для пользователя 2
+2022-02-17 20:43:34,241 DEBUG decos.py Была вызвана функция create_chat_message c параметрами (<common.core_client.MessengerClientCore object at 0x0000017285C68760>,), {'to_user': '2', 'msg_to_user': 'fff'}. Вызов из модуля common.core_client. Вызов из функции self._bootstrap_inner().Вызов из функции user_interactive
+2022-02-17 20:43:34,554 INFO core_client.py Получено сообщение от пользователя 2:
+fff
+2022-02-17 20:44:00,994 INFO core_client.py Завершение работы по команде пользователя.
+2022-02-17 20:44:01,213 CRITICAL core_client.py Потеряно соединение с сервером.
+2022-02-17 20:44:01,213 DEBUG decos.py Была вызвана функция message_from_server_chat_mode c параметрами (<common.core_client.MessengerClientCore object at 0x0000017285C68760>,). Вызов из модуля common.core_client. Вызов из функции self._bootstrap_inner().Вызов из функции run
+2022-02-17 20:44:07,137 INFO core_client.py Завершение работы по команде пользователя.
+2022-02-17 20:44:07,356 CRITICAL core_client.py Потеряно соединение с сервером.
+2022-02-17 20:44:07,356 DEBUG decos.py Была вызвана функция message_from_server_chat_mode c параметрами (<common.core_client.MessengerClientCore object at 0x00000216C56C8760>,). Вызов из модуля common.core_client. Вызов из функции self._bootstrap_inner().Вызов из функции run
+2022-02-17 20:44:07,652 DEBUG decos.py Была вызвана функция user_interactive c параметрами (<common.core_client.MessengerClientCore object at 0x00000216C56C8760>,). Вызов из модуля common.core_client. Вызов из функции self._bootstrap_inner().Вызов из функции run
+2022-02-17 20:49:28,532 DEBUG decos.py Была вызвана функция arg_parser_client c параметрами (<common.core_client.MessengerClientCore object at 0x000001DF35BC2E80>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции __init__
+2022-02-17 20:49:28,532 DEBUG decos.py Была вызвана функция arg_parser_client c параметрами (<common.core_client.MessengerClientCore object at 0x0000020D1CEB2E80>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции __init__
+2022-02-17 20:49:29,048 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7788, режим работы: chat
+2022-02-17 20:49:29,048 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7788, режим работы: chat
+2022-02-17 20:49:29,048 DEBUG decos.py Была вызвана функция init_socket_client c параметрами (<common.core_client.MessengerClientCore object at 0x0000020D1CEB2E80>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции __init__
+2022-02-17 20:49:29,048 DEBUG decos.py Была вызвана функция init_socket_client c параметрами (<common.core_client.MessengerClientCore object at 0x000001DF35BC2E80>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции __init__
+2022-02-17 20:49:29,048 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core_client.MessengerClientCore object at 0x0000020D1CEB2E80>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции main
+2022-02-17 20:49:29,048 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core_client.MessengerClientCore object at 0x000001DF35BC2E80>,). Вызов из модуля common.core_client. Вызов из функции main().Вызов из функции main
+2022-02-17 22:36:26,234 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 22:44:45,541 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 22:45:11,412 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:00:35,193 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:04:56,939 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:06:35,641 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:07:48,690 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:08:04,862 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:09:05,176 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:09:20,156 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:16:42,692 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:17:39,939 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:53:32,836 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:53:50,442 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:58:28,872 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:58:39,739 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-17 23:59:27,024 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-18 00:05:20,059 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7779, режим работы: chat
+2022-02-18 00:05:47,275 CRITICAL core_client.py Не удалось подключиться к серверу 127.0.0.1:7779, конечный компьютер отверг запрос на подключение.
+2022-02-21 16:22:43,878 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7779, режим работы: chat
+2022-02-21 16:24:52,224 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7779, режим работы: chat
+2022-02-21 16:24:52,661 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7779, режим работы: chat
+2022-02-21 16:24:55,849 DEBUG core_client.py Сформировано presence сообщение для пользователя 1
+2022-02-21 16:24:58,008 DEBUG core_client.py Сформировано presence сообщение для пользователя 1
+2022-02-21 16:26:05,249 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7780, режим работы: chat
+2022-02-21 16:26:05,249 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7780, режим работы: chat
+2022-02-21 16:26:07,410 DEBUG core_client.py Сформировано presence сообщение для пользователя 1
+2022-02-21 16:26:10,579 DEBUG core_client.py Сформировано presence сообщение для пользователя 2
+2022-02-21 16:26:48,318 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7781, режим работы: chat
+2022-02-21 16:26:50,131 DEBUG core_client.py Сформировано presence сообщение для пользователя 1
+2022-02-21 16:27:38,604 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7781, режим работы: chat
+2022-02-21 16:27:40,339 DEBUG core_client.py Сформировано presence сообщение для пользователя 1
+2022-02-21 16:27:40,339 INFO core_client.py Отправка запроса авторизации...
+2022-02-21 16:27:40,635 DEBUG core_client.py Разбор сообщения от сервера: {'response': 200}
+2022-02-21 16:27:40,635 INFO core_client.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-02-21 16:27:40,635 INFO core_client.py Режим работы - чат.
+2022-02-21 16:27:40,635 DEBUG core_client.py Запущены процессы
+2022-02-21 16:28:46,133 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7781, режим работы: chat
+2022-02-21 16:28:48,122 DEBUG core_client.py Сформировано presence сообщение для пользователя 2
+2022-02-21 16:28:48,122 INFO core_client.py Отправка запроса авторизации...
+2022-02-21 16:28:48,169 DEBUG core_client.py Разбор сообщения от сервера: {'response': 200}
+2022-02-21 16:28:48,169 INFO core_client.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-02-21 16:28:48,169 INFO core_client.py Режим работы - чат.
+2022-02-21 16:28:48,169 DEBUG core_client.py Запущены процессы
+2022-02-21 16:28:50,669 DEBUG core_client.py Сформирован словарь сообщения: {'action': 'message', 'sender': '2', 'to': '1', 'time': 1645439330.6693883, 'mess_text': 'dgfg'}
+2022-02-21 16:28:50,669 INFO core_client.py Отправлено сообщение для пользователя 1
+2022-02-21 16:28:50,731 INFO core_client.py Получено сообщение от пользователя 2:
+dgfg
+2022-02-21 16:38:50,279 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7782, режим работы: chat
+2022-02-21 16:38:50,779 INFO core_client.py Запущен клиент с парамертами: адрес сервера: 127.0.0.1, порт: 7782, режим работы: chat
+2022-02-21 16:38:52,314 DEBUG core_client.py Сформировано presence сообщение для пользователя 1
+2022-02-21 16:38:52,314 INFO core_client.py Отправка запроса авторизации...
+2022-02-21 16:38:52,830 DEBUG core_client.py Разбор сообщения от сервера: {'response': 200}
+2022-02-21 16:38:52,830 INFO core_client.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-02-21 16:38:52,830 INFO core_client.py Режим работы - чат.
+2022-02-21 16:38:52,830 DEBUG core_client.py Запущены процессы
+2022-02-21 16:38:55,106 DEBUG core_client.py Сформировано presence сообщение для пользователя 2
+2022-02-21 16:38:55,106 INFO core_client.py Отправка запроса авторизации...
+2022-02-21 16:38:55,387 DEBUG core_client.py Разбор сообщения от сервера: {'response': 200}
+2022-02-21 16:38:55,387 INFO core_client.py Принят ответ от сервера Успешная авторизация... 200 : OK
+2022-02-21 16:38:55,387 INFO core_client.py Режим работы - чат.
+2022-02-21 16:38:55,387 DEBUG core_client.py Запущены процессы
+2022-02-21 16:38:58,887 DEBUG core_client.py Сформирован словарь сообщения: {'action': 'message', 'sender': '2', 'to': '1', 'time': 1645439938.8878713, 'mess_text': 'dsfsdf'}
+2022-02-21 16:38:58,887 INFO core_client.py Отправлено сообщение для пользователя 1
+2022-02-21 16:38:58,966 INFO core_client.py Получено сообщение от пользователя 2:
+dsfsdf
