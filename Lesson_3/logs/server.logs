@@ -1,0 +1,446 @@
+2022-02-10 11:28:04,906 INFO core.py Запущен сервер, порт для подключений: 7783, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 11:28:05,093 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами (<common.core.MessengerCore object at 0x000001A4DDA08760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 11:28:05,093 INFO core.py Запущен сервер, порт для подключений: 7783, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 11:28:05,124 DEBUG decos.py Была вызвана функция init_socket_server c параметрами (<common.core.MessengerCore object at 0x000001A4DDA08760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 11:28:05,124 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x000001A4DDA08760>,), {'start_server': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-02-10 11:28:05,124 INFO core.py Сервер запущен...
+2022-02-10 11:28:19,283 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50819)
+2022-02-10 11:28:27,579 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644470907.1109788, 'user': {'account_name': 'Test1'}}
+2022-02-10 11:28:27,579 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001A4DDA08760>, <socket.socket fd=548, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7783), raddr=('127.0.0.1', 50819)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 11:32:00,167 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50832)
+2022-02-10 11:32:04,263 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644471123.9511898, 'user': {'account_name': 'Test'}}
+2022-02-10 11:32:04,263 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001A4DDA08760>, <socket.socket fd=496, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7783), raddr=('127.0.0.1', 50832)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 11:32:21,434 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50833)
+2022-02-10 11:32:37,889 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644471157.4523447, 'user': {'account_name': 'Test2'}}
+2022-02-10 11:32:37,889 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001A4DDA08760>, <socket.socket fd=400, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7783), raddr=('127.0.0.1', 50833)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 11:33:53,451 INFO core.py Клиент ('127.0.0.1', 50832) отключился от сервера.
+2022-02-10 11:33:54,992 INFO core.py Клиент ('127.0.0.1', 50833) отключился от сервера.
+2022-02-10 11:36:06,932 INFO core.py Запущен сервер, порт для подключений: 7777, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 11:36:07,213 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами (<common.core.MessengerCore object at 0x0000021F5CE75880>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 11:36:07,213 INFO core.py Запущен сервер, порт для подключений: 7777, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 11:36:07,213 DEBUG decos.py Была вызвана функция init_socket_server c параметрами (<common.core.MessengerCore object at 0x0000021F5CE75880>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 11:36:07,229 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x0000021F5CE75880>,), {'start_server': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-02-10 11:36:07,229 INFO core.py Сервер запущен...
+2022-02-10 11:49:44,149 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50880)
+2022-02-10 11:49:51,885 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644472191.3703065, 'user': {'account_name': 'Test'}}
+2022-02-10 11:50:24,016 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000021F5CE75880>, <socket.socket fd=720, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50880)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 11:53:08,816 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50884)
+2022-02-10 11:53:15,440 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644472394.9872735, 'user': {'account_name': 'T'}}
+2022-02-10 11:53:18,909 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000021F5CE75880>, <socket.socket fd=860, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7777), raddr=('127.0.0.1', 50884)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 11:55:45,415 INFO core.py Клиент ('127.0.0.1', 50880) отключился от сервера.
+2022-02-10 11:55:48,520 INFO core.py Клиент ('127.0.0.1', 50884) отключился от сервера.
+2022-02-10 11:56:29,281 INFO core.py Запущен сервер, порт для подключений: 7777, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 11:56:29,437 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами (<common.core.MessengerCore object at 0x0000025673133100>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 11:56:29,437 INFO core.py Запущен сервер, порт для подключений: 7777, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 11:56:29,437 INFO core.py Порт для подключений 7777 занят!Производится смена порта на: 7778. 
+2022-02-10 11:56:29,453 DEBUG decos.py Была вызвана функция init_socket_server c параметрами (<common.core.MessengerCore object at 0x0000025673133100>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 11:56:29,453 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x0000025673133100>,), {'start_server': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-02-10 11:56:29,453 INFO core.py Сервер запущен...
+2022-02-10 11:56:37,968 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50894)
+2022-02-10 11:56:41,546 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644472601.187203, 'user': {'account_name': 'T'}}
+2022-02-10 11:56:41,546 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000021F5CE75880>, <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 11:57:10,103 INFO core.py Запущен сервер, порт для подключений: 7778, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 11:57:10,289 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами (<common.core.MessengerCore object at 0x000001F5F9E10C10>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 11:57:10,289 INFO core.py Запущен сервер, порт для подключений: 7778, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 11:57:10,304 DEBUG decos.py Была вызвана функция init_socket_server c параметрами (<common.core.MessengerCore object at 0x000001F5F9E10C10>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 11:57:10,304 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x000001F5F9E10C10>,), {'start_server': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-02-10 11:57:10,304 INFO core.py Сервер запущен...
+2022-02-10 11:57:14,195 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50900)
+2022-02-10 11:57:16,773 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644472636.304669, 'user': {'account_name': 'T'}}
+2022-02-10 11:57:25,820 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001F5F9E10C10>, <socket.socket fd=404, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7778), raddr=('127.0.0.1', 50900)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 11:57:32,725 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50901)
+2022-02-10 11:57:37,337 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644472656.853426, 'user': {'account_name': 'Y'}}
+2022-02-10 11:57:39,259 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001F5F9E10C10>, <socket.socket fd=804, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7778), raddr=('127.0.0.1', 50901)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 11:57:51,087 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'Y', 'to': 'T', 'time': 1644472670.5716856, 'mess_text': 'hi'}
+2022-02-10 11:57:51,087 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001F5F9E10C10>, <socket.socket fd=804, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7778), raddr=('127.0.0.1', 50901)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 11:57:51,087 INFO core.py Связь с клиентом с именем T была потеряна
+2022-02-10 11:58:47,059 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'Y', 'to': 'T', 'time': 1644472712.9034696, 'mess_text': 'njn'}
+2022-02-10 12:01:25,825 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001F5F9E10C10>, <socket.socket fd=804, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7778), raddr=('127.0.0.1', 50901)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 12:02:19,718 INFO core.py Связь с клиентом с именем T была потеряна
+2022-02-10 12:23:56,866 INFO core.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 12:23:56,913 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами (<common.core.MessengerCore object at 0x0000023EBF9D8760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 12:23:56,913 INFO core.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 12:23:56,913 DEBUG decos.py Была вызвана функция init_socket_server c параметрами (<common.core.MessengerCore object at 0x0000023EBF9D8760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 12:23:56,913 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x0000023EBF9D8760>,), {'start_server': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-02-10 12:23:56,913 INFO core.py Сервер запущен...
+2022-02-10 12:24:00,897 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50940)
+2022-02-10 12:24:03,446 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644474243.2433858, 'user': {'account_name': 'r'}}
+2022-02-10 12:24:03,446 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000023EBF9D8760>, <socket.socket fd=424, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7779), raddr=('127.0.0.1', 50940)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 12:24:07,508 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50941)
+2022-02-10 12:24:10,086 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644474249.9462893, 'user': {'account_name': 't'}}
+2022-02-10 12:24:10,086 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000023EBF9D8760>, <socket.socket fd=428, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7779), raddr=('127.0.0.1', 50941)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 12:24:14,211 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 't', 'to': 'r', 'time': 1644474253.9617822, 'mess_text': 'yy'}
+2022-02-10 12:24:14,211 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000023EBF9D8760>, <socket.socket fd=428, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7779), raddr=('127.0.0.1', 50941)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 12:24:14,211 INFO core.py Связь с клиентом с именем r была потеряна
+2022-02-10 12:25:51,836 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50945)
+2022-02-10 12:25:54,914 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644474354.7580113, 'user': {'account_name': 't'}}
+2022-02-10 12:25:54,914 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000023EBF9D8760>, <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 12:26:03,867 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50946)
+2022-02-10 12:26:06,945 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644474366.8825743, 'user': {'account_name': 'o'}}
+2022-02-10 12:26:06,945 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000023EBF9D8760>, <socket.socket fd=432, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7779), raddr=('127.0.0.1', 50946)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 12:26:16,665 DEBUG core.py Разбор сообщения от клиента : {'action': 'exit', 'time': 1644474376.2439344, 'account_name': 'o'}
+2022-02-10 12:26:16,665 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000023EBF9D8760>, <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 12:26:47,386 INFO core.py Установлено соедение с ПК ('127.0.0.1', 50951)
+2022-02-10 12:26:56,088 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644474415.6358137, 'user': {'account_name': 'o'}}
+2022-02-10 12:26:56,088 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000023EBF9D8760>, <socket.socket fd=436, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7779), raddr=('127.0.0.1', 50951)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 12:27:12,966 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 't', 'to': 'o', 'time': 1644474432.701392, 'mess_text': 'ff'}
+2022-02-10 12:27:12,966 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000023EBF9D8760>, <socket.socket fd=428, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7779), raddr=('127.0.0.1', 50941)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 12:27:12,966 INFO core.py Связь с клиентом с именем o была потеряна
+2022-02-10 12:27:33,453 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 't', 'to': 'o', 'time': 1644474453.3437033, 'mess_text': 'bjbkj'}
+2022-02-10 12:27:33,453 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000023EBF9D8760>, <socket.socket fd=428, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7779), raddr=('127.0.0.1', 50941)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 12:27:33,453 INFO core.py Связь с клиентом с именем o была потеряна
+2022-02-10 13:26:01,446 INFO core.py Запущен сервер, порт для подключений: 7780, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 13:26:01,634 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами (<common.core.MessengerCore object at 0x000002E952790AC0>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 13:26:01,634 INFO core.py Запущен сервер, порт для подключений: 7780, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 13:26:01,634 DEBUG decos.py Была вызвана функция init_socket_server c параметрами (<common.core.MessengerCore object at 0x000002E952790AC0>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 13:26:01,649 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x000002E952790AC0>,), {'start_server': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-02-10 13:26:01,649 INFO core.py Сервер запущен...
+2022-02-10 13:26:12,180 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51023)
+2022-02-10 13:26:17,836 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644477977.696315, 'user': {'account_name': 'Test'}}
+2022-02-10 13:26:17,836 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000002E952790AC0>, <socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7780), raddr=('127.0.0.1', 51023)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:26:23,711 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51024)
+2022-02-10 13:26:29,856 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644477989.7626066, 'user': {'account_name': 'OOO'}}
+2022-02-10 13:26:29,856 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000002E952790AC0>, <socket.socket fd=688, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7780), raddr=('127.0.0.1', 51024)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:27:34,736 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'Test', 'to': 'OOO', 'time': 1644478001.5747418, 'mess_text': 'yyyy'}
+2022-02-10 13:27:34,736 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000002E952790AC0>, <socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7780), raddr=('127.0.0.1', 51023)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:27:34,736 INFO core.py Связь с клиентом с именем OOO была потеряна
+2022-02-10 13:29:43,066 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'Test', 'to': 'OOO', 'time': 1644478172.457071, 'mess_text': 'yy'}
+2022-02-10 13:30:58,901 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000002E952790AC0>, <socket.socket fd=696, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7780), raddr=('127.0.0.1', 51023)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:31:35,106 INFO core.py Связь с клиентом с именем OOO была потеряна
+2022-02-10 13:34:11,848 INFO core.py Запущен сервер, порт для подключений: 7781, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 13:34:12,036 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами (<common.core.MessengerCore object at 0x00000233E0420AF0>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 13:34:12,036 INFO core.py Запущен сервер, порт для подключений: 7781, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 13:34:12,051 DEBUG decos.py Была вызвана функция init_socket_server c параметрами (<common.core.MessengerCore object at 0x00000233E0420AF0>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 13:34:12,051 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x00000233E0420AF0>,), {'start_server': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-02-10 13:34:12,051 INFO core.py Сервер запущен...
+2022-02-10 13:34:17,446 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51034)
+2022-02-10 13:34:21,461 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51035)
+2022-02-10 13:34:26,071 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644478465.9773026, 'user': {'account_name': 'ooo'}}
+2022-02-10 13:34:26,071 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x00000233E0420AF0>, <socket.socket fd=632, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7781), raddr=('127.0.0.1', 51035)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:34:29,664 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644478469.6490004, 'user': {'account_name': 'ppp'}}
+2022-02-10 13:34:29,664 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x00000233E0420AF0>, <socket.socket fd=732, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7781), raddr=('127.0.0.1', 51034)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:34:36,320 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'ppp', 'to': 'ooo', 'time': 1644478476.070717, 'mess_text': 'ghg'}
+2022-02-10 13:34:36,320 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x00000233E0420AF0>, <socket.socket fd=732, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7781), raddr=('127.0.0.1', 51034)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:34:36,320 INFO core.py Связь с клиентом с именем ooo была потеряна
+2022-02-10 13:38:23,017 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'ppp', 'to': 'ooo', 'time': 1644478562.9752803, 'mess_text': 'uuu'}
+2022-02-10 13:38:23,017 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x00000233E0420AF0>, <socket.socket fd=732, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7781), raddr=('127.0.0.1', 51034)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:38:23,017 INFO core.py Связь с клиентом с именем ooo была потеряна
+2022-02-10 13:39:48,198 INFO core.py Запущен сервер, порт для подключений: 7782, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 13:39:48,245 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 13:39:48,245 INFO core.py Запущен сервер, порт для подключений: 7782, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 13:39:48,245 DEBUG decos.py Была вызвана функция init_socket_server c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 13:39:48,245 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>,), {'start_server': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-02-10 13:39:48,245 INFO core.py Сервер запущен...
+2022-02-10 13:39:55,422 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51041)
+2022-02-10 13:39:57,532 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51042)
+2022-02-10 13:40:07,748 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644478807.4046388, 'user': {'account_name': 'qqq'}}
+2022-02-10 13:40:07,748 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>, <socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51042)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:40:11,342 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644478810.8888507, 'user': {'account_name': 'www'}}
+2022-02-10 13:40:11,342 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>, <socket.socket fd=384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51041)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:40:14,404 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'www', 'to': 'qqq', 'time': 1644478814.3574739, 'mess_text': 'rr'}
+2022-02-10 13:40:14,404 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>, <socket.socket fd=384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51041)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:40:14,404 INFO core.py Отправлено сообщение пользователю qqq от пользователя www.
+2022-02-10 13:40:14,404 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>, [<socket.socket fd=384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51041)>, <socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51042)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:40:24,174 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'qqq', 'to': 'www', 'time': 1644478823.6584258, 'mess_text': 'tt'}
+2022-02-10 13:40:24,174 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>, <socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51042)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:40:24,174 INFO core.py Отправлено сообщение пользователю www от пользователя qqq.
+2022-02-10 13:40:24,174 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>, [<socket.socket fd=384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51041)>, <socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51042)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:40:40,142 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'www', 'to': 'qqq', 'time': 1644478839.8766425, 'mess_text': 'tt'}
+2022-02-10 13:40:40,142 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>, <socket.socket fd=384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51041)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:40:40,142 INFO core.py Отправлено сообщение пользователю qqq от пользователя www.
+2022-02-10 13:40:40,142 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>, [<socket.socket fd=384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51041)>, <socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51042)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:42:50,563 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'www', 'to': 'qqq', 'time': 1644478970.0948856, 'mess_text': 't'}
+2022-02-10 13:42:50,563 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>, <socket.socket fd=384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51041)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:42:50,563 INFO core.py Отправлено сообщение пользователю qqq от пользователя www.
+2022-02-10 13:42:50,563 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>, [<socket.socket fd=384, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51041)>, <socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51042)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:45:31,296 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'qqq', 'to': 'ooo', 'time': 1644479130.7804132, 'mess_text': 't'}
+2022-02-10 13:45:31,296 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x0000019EBC5D8760>, <socket.socket fd=476, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7782), raddr=('127.0.0.1', 51042)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:45:31,296 INFO core.py Связь с клиентом с именем ooo была потеряна
+2022-02-10 13:49:12,244 INFO core.py Запущен сервер, порт для подключений: 7783, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 13:49:12,291 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами (<common.core.MessengerCore object at 0x0000014F88B48760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 13:49:12,291 INFO core.py Запущен сервер, порт для подключений: 7783, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 13:49:12,291 INFO core.py Порт для подключений 7783 занят!Производится смена порта на: 7784. 
+2022-02-10 13:49:12,291 DEBUG decos.py Была вызвана функция init_socket_server c параметрами (<common.core.MessengerCore object at 0x0000014F88B48760>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 13:49:12,291 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x0000014F88B48760>,), {'start_server': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-02-10 13:49:12,291 INFO core.py Сервер запущен...
+2022-02-10 13:49:16,385 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51069)
+2022-02-10 13:49:18,353 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51070)
+2022-02-10 13:49:21,463 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644479361.322563, 'user': {'account_name': 'q'}}
+2022-02-10 13:49:21,478 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001A4DDA08760>, <socket.socket fd=528, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7783), raddr=('127.0.0.1', 51069)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:49:25,560 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644479365.5451784, 'user': {'account_name': 'w'}}
+2022-02-10 13:49:25,560 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001A4DDA08760>, <socket.socket fd=316, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7783), raddr=('127.0.0.1', 51070)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:49:29,654 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'w', 'to': 'q', 'time': 1644479369.4513006, 'mess_text': 'yy'}
+2022-02-10 13:49:29,654 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001A4DDA08760>, <socket.socket fd=316, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7783), raddr=('127.0.0.1', 51070)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:49:29,654 INFO core.py Связь с клиентом с именем q была потеряна
+2022-02-10 13:50:06,540 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'w', 'to': 'q', 'time': 1644479406.0878506, 'mess_text': 'uuuu'}
+2022-02-10 13:50:06,540 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001A4DDA08760>, <socket.socket fd=316, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7783), raddr=('127.0.0.1', 51070)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:50:06,540 INFO core.py Связь с клиентом с именем q была потеряна
+2022-02-10 13:52:06,388 INFO core.py Запущен сервер, порт для подключений: 7784, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 13:52:06,560 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 13:52:06,560 INFO core.py Запущен сервер, порт для подключений: 7784, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-10 13:52:06,560 DEBUG decos.py Была вызвана функция init_socket_server c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>,). Вызов из модуля common.core. Вызов из функции main().Вызов из функции __init__
+2022-02-10 13:52:06,560 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>,), {'start_server': True}. Вызов из модуля common.core. Вызов из функции main().Вызов из функции main
+2022-02-10 13:52:06,560 INFO core.py Сервер запущен...
+2022-02-10 13:52:11,435 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51081)
+2022-02-10 13:52:17,076 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644479536.6385484, 'user': {'account_name': '1'}}
+2022-02-10 13:52:17,076 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=712, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51081)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:52:23,841 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51082)
+2022-02-10 13:52:26,376 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644479546.0173535, 'user': {'account_name': '2'}}
+2022-02-10 13:52:26,376 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:52:33,048 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': '2', 'to': '1', 'time': 1644479552.7358441, 'mess_text': 'tt'}
+2022-02-10 13:52:33,048 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:52:57,614 INFO core.py Отправлено сообщение пользователю 1 от пользователя 2.
+2022-02-10 13:53:00,332 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=712, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51081)>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:53:22,928 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': '2', 'to': '2', 'time': 1644479602.818941, 'mess_text': 'tt'}
+2022-02-10 13:53:22,928 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:53:28,943 INFO core.py Отправлено сообщение пользователю 2 от пользователя 2.
+2022-02-10 13:53:30,943 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=712, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51081)>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:53:51,962 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': '2', 'to': '3', 'time': 1644479631.6658967, 'mess_text': 'tt'}
+2022-02-10 13:53:51,962 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:53:51,962 ERROR core.py Пользователь 3 не зарегистрирован на сервере, отправка сообщения невозможна.
+2022-02-10 13:53:51,962 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=712, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51081)>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:53:57,118 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': '2', 'to': '2', 'time': 1644479636.7751048, 'mess_text': '33'}
+2022-02-10 13:53:57,118 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:54:00,478 INFO core.py Отправлено сообщение пользователю 2 от пользователя 2.
+2022-02-10 13:54:00,478 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=712, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51081)>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:54:27,119 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': '2', 'to': '1', 'time': 1644479666.9479818, 'mess_text': 'rr'}
+2022-02-10 13:54:27,119 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:54:29,400 INFO core.py Отправлено сообщение пользователю 1 от пользователя 2.
+2022-02-10 13:54:29,400 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=712, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51081)>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:54:41,185 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': '1', 'to': '2', 'time': 1644479680.810913, 'mess_text': 'ff'}
+2022-02-10 13:54:41,185 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=712, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51081)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:54:47,888 INFO core.py Отправлено сообщение пользователю 2 от пользователя 1.
+2022-02-10 13:54:50,716 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=712, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51081)>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:55:39,971 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': '2', 'to': '1', 'time': 1644479739.471289, 'mess_text': 'yy'}
+2022-02-10 13:55:39,971 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:55:45,033 INFO core.py Отправлено сообщение пользователю 1 от пользователя 2.
+2022-02-10 13:55:52,548 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=712, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51081)>, <socket.socket fd=580, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51082)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:56:25,846 DEBUG core.py Разбор сообщения от клиента : {'action': 'exit', 'time': 1644479785.6536565, 'account_name': '2'}
+2022-02-10 13:56:25,846 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:56:33,033 DEBUG core.py Разбор сообщения от клиента : {'action': 'exit', 'time': 1644479792.5334737, 'account_name': '1'}
+2022-02-10 13:56:33,033 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:57:23,548 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51087)
+2022-02-10 13:57:33,297 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644479853.1571543, 'user': {'account_name': 'qwe'}}
+2022-02-10 13:57:33,297 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=1116, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51087)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:57:40,427 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51088)
+2022-02-10 13:57:45,545 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644479865.1252632, 'user': {'account_name': 'asd'}}
+2022-02-10 13:57:45,545 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=556, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51088)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:57:56,373 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'asd', 'to': 'qwe', 'time': 1644479875.8575912, 'mess_text': 'sv ssg!'}
+2022-02-10 13:57:56,373 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=556, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51088)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 13:58:02,201 INFO core.py Отправлено сообщение пользователю qwe от пользователя asd.
+2022-02-10 13:58:02,201 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=1116, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51087)>, <socket.socket fd=556, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51088)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:02:32,504 DEBUG core.py Разбор сообщения от клиента : {'action': 'exit', 'time': 1644480152.191825, 'account_name': 'qwe'}
+2022-02-10 14:02:32,504 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:02:38,673 DEBUG core.py Разбор сообщения от клиента : {'action': 'exit', 'time': 1644480158.282962, 'account_name': 'asd'}
+2022-02-10 14:02:38,673 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:02:44,907 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51144)
+2022-02-10 14:02:48,470 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644480168.313883, 'user': {'account_name': 'qwe'}}
+2022-02-10 14:02:48,470 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=556, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51144)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:02:52,673 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51145)
+2022-02-10 14:02:58,329 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644480178.2198052, 'user': {'account_name': 'asd'}}
+2022-02-10 14:02:58,329 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=788, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51145)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:03:02,454 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'asd', 'to': 'qwe', 'time': 1644480181.9853098, 'mess_text': 'tt'}
+2022-02-10 14:03:02,454 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=788, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51145)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:03:04,875 INFO core.py Отправлено сообщение пользователю qwe от пользователя asd.
+2022-02-10 14:03:04,875 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=556, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51144)>, <socket.socket fd=788, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51145)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:03:22,359 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'asd', 'to': 'qwe', 'time': 1644480202.1409001, 'mess_text': 'cb sgsdg'}
+2022-02-10 14:03:22,359 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=788, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51145)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:03:24,390 INFO core.py Отправлено сообщение пользователю qwe от пользователя asd.
+2022-02-10 14:03:24,390 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=556, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51144)>, <socket.socket fd=788, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51145)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:04:20,280 DEBUG core.py Разбор сообщения от клиента : {'action': 'exit', 'time': 1644480260.0928485, 'account_name': 'qwe'}
+2022-02-10 14:04:20,280 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:04:25,436 DEBUG core.py Разбор сообщения от клиента : {'action': 'exit', 'time': 1644480265.1707523, 'account_name': 'asd'}
+2022-02-10 14:04:25,436 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:04:31,687 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51151)
+2022-02-10 14:04:34,765 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644480274.5472946, 'user': {'account_name': 'qwe'}}
+2022-02-10 14:04:34,765 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=832, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51151)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:04:39,000 INFO core.py Установлено соедение с ПК ('127.0.0.1', 51152)
+2022-02-10 14:04:41,562 DEBUG core.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1644480281.140829, 'user': {'account_name': 'asd'}}
+2022-02-10 14:04:41,562 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=1124, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51152)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:04:46,165 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'asd', 'to': 'qwe', 'time': 1644480285.8533113, 'mess_text': 'km;'}
+2022-02-10 14:04:46,165 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=1124, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51152)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:04:48,259 INFO core.py Отправлено сообщение пользователю qwe от пользователя asd.
+2022-02-10 14:04:48,259 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=832, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51151)>, <socket.socket fd=1124, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51152)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:04:56,446 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'asd', 'to': 'qwe', 'time': 1644480296.1342242, 'mess_text': 'll,'}
+2022-02-10 14:04:56,446 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=1124, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51152)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:04:56,446 INFO core.py Отправлено сообщение пользователю qwe от пользователя asd.
+2022-02-10 14:04:56,446 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=832, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51151)>, <socket.socket fd=1124, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51152)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:05:04,636 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'asd', 'to': 'asd', 'time': 1644480304.1367242, 'mess_text': 'l;l,'}
+2022-02-10 14:05:04,636 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=1124, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51152)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:05:04,636 INFO core.py Отправлено сообщение пользователю asd от пользователя asd.
+2022-02-10 14:05:04,636 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=832, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51151)>, <socket.socket fd=1124, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51152)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:06:02,713 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'qwe', 'to': 'asd', 'time': 1644480362.6195898, 'mess_text': 'Fac'}
+2022-02-10 14:06:02,713 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=832, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51151)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:06:02,713 INFO core.py Отправлено сообщение пользователю asd от пользователя qwe.
+2022-02-10 14:06:02,713 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=832, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51151)>, <socket.socket fd=1124, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51152)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:07:35,069 DEBUG core.py Разбор сообщения от клиента : {'action': 'message', 'sender': 'asd', 'to': 'QWE', 'time': 1644480454.9446461, 'mess_text': 'SGDDSG'}
+2022-02-10 14:07:35,069 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket fd=1124, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51152)>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:07:35,069 ERROR core.py Пользователь QWE не зарегистрирован на сервере, отправка сообщения невозможна.
+2022-02-10 14:07:35,069 DEBUG decos.py Была вызвана функция process_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, [<socket.socket fd=832, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51151)>, <socket.socket fd=1124, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0, laddr=('127.0.0.1', 7784), raddr=('127.0.0.1', 51152)>]). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:08:25,896 DEBUG core.py Разбор сообщения от клиента : {'action': 'exit', 'time': 1644480505.6929653, 'account_name': 'qwe'}
+2022-02-10 14:08:25,896 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-10 14:08:35,614 DEBUG core.py Разбор сообщения от клиента : {'action': 'exit', 'time': 1644480515.1770265, 'account_name': 'asd'}
+2022-02-10 14:08:35,614 DEBUG decos.py Была вызвана функция process_client_message c параметрами (<common.core.MessengerCore object at 0x000001DF798D0AC0>, <socket.socket [closed] fd=-1, family=AddressFamily.AF_INET, type=SocketKind.SOCK_STREAM, proto=0>). Вызов из модуля common.core. Вызов из функции main().Вызов из функции start_server_listen
+2022-02-17 21:00:19,504 INFO core_server.py Запущен сервер, порт для подключений: 7778, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-17 21:00:19,614 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами (<common.core_server.MessengerServerCore object at 0x0000019C70838760>,). Вызов из модуля common.core_server. Вызов из функции main().Вызов из функции __init__
+2022-02-17 21:00:19,614 INFO core_server.py Запущен сервер, порт для подключений: 7778, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-17 21:00:19,614 DEBUG decos.py Была вызвана функция init_socket_server c параметрами (<common.core_server.MessengerServerCore object at 0x0000019C70838760>,). Вызов из модуля common.core_server. Вызов из функции main().Вызов из функции __init__
+2022-02-17 21:00:19,614 DEBUG decos.py Была вызвана функция __init__ c параметрами (<common.core_server.MessengerServerCore object at 0x0000019C70838760>,). Вызов из модуля common.core_server. Вызов из функции main().Вызов из функции main
+2022-02-17 21:00:19,614 INFO core_server.py Сервер запущен...
+2022-02-17 21:55:47,685 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-17 21:55:47,685 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-17 21:55:47,685 INFO core_server.py Сервер запущен...
+2022-02-17 22:22:57,457 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-17 22:22:57,457 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-17 22:22:57,457 INFO core_server.py Сервер запущен...
+2022-02-17 22:54:32,836 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-17 22:54:32,836 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-17 22:54:32,836 INFO core_server.py Сервер запущен...
+2022-02-17 23:54:22,059 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-17 23:54:22,074 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-17 23:54:22,074 INFO core_server.py Сервер запущен...
+2022-02-18 00:23:53,248 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-18 00:23:53,310 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-18 00:23:53,310 INFO core_server.py Сервер запущен...
+2022-02-21 16:22:43,831 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 16:22:43,847 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 16:22:43,878 INFO core_server.py Сервер запущен...
+2022-02-21 16:22:43,894 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50231)
+2022-02-21 16:22:43,894 INFO core_server.py Клиент ('127.0.0.1', 50231) отключился от сервера.
+2022-02-21 16:22:43,894 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50230)
+2022-02-21 16:22:43,894 INFO core_server.py Клиент ('127.0.0.1', 50230) отключился от сервера.
+2022-02-21 16:24:52,193 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 16:24:52,193 INFO core_server.py Запущен сервер, порт для подключений: 7779, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 16:24:52,193 INFO core_server.py Сервер запущен...
+2022-02-21 16:24:52,224 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50253)
+2022-02-21 16:24:52,224 INFO core_server.py Клиент ('127.0.0.1', 50253) отключился от сервера.
+2022-02-21 16:24:52,661 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50252)
+2022-02-21 16:24:53,161 INFO core_server.py Клиент ('127.0.0.1', 50252) отключился от сервера.
+2022-02-21 16:26:05,234 INFO core_server.py Запущен сервер, порт для подключений: 7780, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 16:26:05,234 INFO core_server.py Запущен сервер, порт для подключений: 7780, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 16:26:05,234 INFO core_server.py Сервер запущен...
+2022-02-21 16:26:05,249 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50258)
+2022-02-21 16:26:05,249 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50259)
+2022-02-21 16:26:05,765 INFO core_server.py Клиент ('127.0.0.1', 50258) отключился от сервера.
+2022-02-21 16:26:05,765 INFO core_server.py Клиент ('127.0.0.1', 50259) отключился от сервера.
+2022-02-21 16:26:32,124 INFO core_server.py Запущен сервер, порт для подключений: 7781, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 16:26:32,124 INFO core_server.py Запущен сервер, порт для подключений: 7781, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 16:26:32,124 INFO core_server.py Сервер запущен...
+2022-02-21 16:26:48,318 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50260)
+2022-02-21 16:26:48,818 INFO core_server.py Клиент ('127.0.0.1', 50260) отключился от сервера.
+2022-02-21 16:27:38,604 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50263)
+2022-02-21 16:27:40,635 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645439260.3390157, 'user': {'account_name': '1'}}
+2022-02-21 16:28:46,133 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50264)
+2022-02-21 16:28:48,169 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645439328.122545, 'user': {'account_name': '2'}}
+2022-02-21 16:28:50,731 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '2', 'to': '1', 'time': 1645439330.6693883, 'mess_text': 'dgfg'}
+2022-02-21 16:28:50,731 INFO core_server.py Отправлено сообщение пользователю 1 от пользователя 2.
+2022-02-21 16:38:50,248 INFO core_server.py Запущен сервер, порт для подключений: 7782, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 16:38:50,263 INFO core_server.py Запущен сервер, порт для подключений: 7782, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 16:38:50,263 INFO core_server.py Сервер запущен...
+2022-02-21 16:38:50,279 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50323)
+2022-02-21 16:38:50,779 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50322)
+2022-02-21 16:38:52,830 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645439932.3148959, 'user': {'account_name': '1'}}
+2022-02-21 16:38:55,387 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645439935.1067796, 'user': {'account_name': '2'}}
+2022-02-21 16:38:58,966 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '2', 'to': '1', 'time': 1645439938.8878713, 'mess_text': 'dsfsdf'}
+2022-02-21 16:38:58,966 INFO core_server.py Отправлено сообщение пользователю 1 от пользователя 2.
+2022-02-21 16:39:03,067 INFO core_server.py Клиент ('127.0.0.1', 50322) отключился от сервера.
+2022-02-21 16:39:04,093 INFO core_server.py Клиент ('127.0.0.1', 50323) отключился от сервера.
+2022-02-21 17:20:01,827 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами () , {}. Вызов из модуля common.core_server
+2022-02-21 17:20:01,843 INFO core_server.py Запущен сервер, порт для подключений: 7783, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 17:20:02,952 INFO core_server.py Запущен сервер, порт для подключений: 7783, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 17:20:02,952 INFO core_server.py Сервер запущен...
+2022-02-21 17:20:34,629 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50610)
+2022-02-21 17:20:37,161 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645442436.7548425, 'user': {'account_name': '1'}}
+2022-02-21 17:21:52,561 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'exit', 'time': 1645442512.5455844, 'account_name': '1'}
+2022-02-21 17:21:52,561 INFO core_server.py Клиент ('127.0.0.1', 50610) отключился от сервера.
+2022-02-21 17:26:16,452 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами () , {}. Вызов из модуля common.core_server
+2022-02-21 17:26:16,468 INFO core_server.py Запущен сервер, порт для подключений: 7784, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 17:26:16,874 INFO core_server.py Запущен сервер, порт для подключений: 7784, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 17:26:16,874 INFO core_server.py Сервер запущен...
+2022-02-21 17:26:20,858 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50628)
+2022-02-21 17:26:22,876 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645442782.798434, 'user': {'account_name': '2'}}
+2022-02-21 17:26:28,784 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50629)
+2022-02-21 17:26:30,831 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645442790.815598, 'user': {'account_name': '3'}}
+2022-02-21 17:29:25,032 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'exit', 'time': 1645442964.7511795, 'account_name': '2'}
+2022-02-21 17:30:06,266 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'exit', 'time': 1645443006.2350798, 'account_name': '3'}
+2022-02-21 17:50:50,914 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами () , {}. Вызов из модуля common.core_server
+2022-02-21 17:50:50,930 INFO core_server.py Запущен сервер, порт для подключений: 7784, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 17:50:51,602 INFO core_server.py Запущен сервер, порт для подключений: 7784, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 17:50:51,602 INFO core_server.py Сервер запущен...
+2022-02-21 17:51:06,086 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50716)
+2022-02-21 17:51:08,132 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645444267.945501, 'user': {'account_name': '1'}}
+2022-02-21 17:51:11,882 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50717)
+2022-02-21 17:51:14,945 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645444274.5233972, 'user': {'account_name': '5'}}
+2022-02-21 17:51:18,851 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '5', 'to': '1', 'time': 1645444278.5388854, 'mess_text': 'ooo'}
+2022-02-21 17:51:18,851 INFO core_server.py Отправлено сообщение пользователю 1 от пользователя 5.
+2022-02-21 17:51:18,851 INFO core_server.py Связь с клиентом с именем 1 была потеряна
+2022-02-21 17:51:23,476 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '5', 'to': '1', 'time': 1645444283.0230494, 'mess_text': 'hi'}
+2022-02-21 17:51:23,476 ERROR core_server.py Пользователь 1 не зарегистрирован на сервере, отправка сообщения невозможна.
+2022-02-21 17:52:02,170 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50720)
+2022-02-21 17:52:04,217 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645444324.1704268, 'user': {'account_name': '1'}}
+2022-02-21 17:52:04,217 INFO core_server.py Клиент ('127.0.0.1', 50720) отключился от сервера.
+2022-02-21 17:52:28,690 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '5', 'to': '1', 'time': 1645444348.6279037, 'mess_text': 'tt'}
+2022-02-21 17:52:28,690 INFO core_server.py Связь с клиентом с именем 1 была потеряна
+2022-02-21 17:54:33,070 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами () , {}. Вызов из модуля common.core_server
+2022-02-21 17:54:33,085 INFO core_server.py Запущен сервер, порт для подключений: 7785, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 17:54:33,413 INFO core_server.py Запущен сервер, порт для подключений: 7785, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 17:54:33,413 INFO core_server.py Сервер запущен...
+2022-02-21 17:54:38,585 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50744)
+2022-02-21 17:54:40,616 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645444480.4449828, 'user': {'account_name': '1'}}
+2022-02-21 17:54:47,272 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50745)
+2022-02-21 17:54:49,319 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645444489.0384936, 'user': {'account_name': '2'}}
+2022-02-21 17:54:55,680 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '2', 'to': '1', 'time': 1645444495.5872452, 'mess_text': 'yy'}
+2022-02-21 17:54:59,827 INFO core_server.py Отправлено сообщение пользователю 1 от пользователя 2.
+2022-02-21 17:57:35,392 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами () , {}. Вызов из модуля common.core_server
+2022-02-21 17:57:35,407 INFO core_server.py Запущен сервер, порт для подключений: 7787, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 17:57:35,735 INFO core_server.py Запущен сервер, порт для подключений: 7787, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 17:57:35,735 INFO core_server.py Сервер запущен...
+2022-02-21 17:57:39,845 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50757)
+2022-02-21 17:57:42,418 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645444661.981445, 'user': {'account_name': '1'}}
+2022-02-21 17:57:45,700 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50759)
+2022-02-21 17:57:47,246 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645444667.1999614, 'user': {'account_name': '2'}}
+2022-02-21 17:57:51,574 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '2', 'to': '1', 'time': 1645444671.4967058, 'mess_text': 'hi'}
+2022-02-21 17:57:51,574 INFO core_server.py Отправлено сообщение пользователю 1 от пользователя 2.
+2022-02-21 17:57:51,574 INFO core_server.py Связь с клиентом с именем 1 была потеряна
+2022-02-21 20:45:04,762 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами () , {}. Вызов из модуля common.core_server
+2022-02-21 20:45:04,778 INFO core_server.py Запущен сервер, порт для подключений: 7788, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 20:45:05,231 INFO core_server.py Запущен сервер, порт для подключений: 7788, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 20:45:05,231 INFO core_server.py Сервер запущен...
+2022-02-21 20:45:13,855 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами () , {}. Вызов из модуля common.core_server
+2022-02-21 20:45:13,855 INFO core_server.py Запущен сервер, порт для подключений: 7789, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 20:45:14,105 INFO core_server.py Запущен сервер, порт для подключений: 7789, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 20:45:14,105 INFO core_server.py Сервер запущен...
+2022-02-21 20:45:20,504 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50851)
+2022-02-21 20:45:23,556 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645454723.540771, 'user': {'account_name': '1'}}
+2022-02-21 20:45:27,915 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '1', 'to': '1', 'time': 1645454727.8999958, 'mess_text': 'ее'}
+2022-02-21 20:45:40,040 INFO core_server.py Отправлено сообщение пользователю 1 от пользователя 1.
+2022-02-21 20:50:56,944 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами () , {}. Вызов из модуля common.core_server
+2022-02-21 20:50:56,944 INFO core_server.py Запущен сервер, порт для подключений: 7790, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 20:50:57,241 INFO core_server.py Запущен сервер, порт для подключений: 7790, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 20:50:57,241 INFO core_server.py Сервер запущен...
+2022-02-21 20:51:02,241 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50886)
+2022-02-21 20:51:04,288 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645455064.0695138, 'user': {'account_name': '1'}}
+2022-02-21 20:51:08,100 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '1', 'to': '1', 'time': 1645455067.6162648, 'mess_text': 'ttt'}
+2022-02-21 20:51:08,100 INFO core_server.py Отправлено сообщение пользователю 1 от пользователя 1.
+2022-02-21 20:52:24,393 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами () , {}. Вызов из модуля common.core_server
+2022-02-21 20:52:24,393 INFO core_server.py Запущен сервер, порт для подключений: 7791, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 20:52:24,643 INFO core_server.py Запущен сервер, порт для подключений: 7791, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 20:52:24,643 INFO core_server.py Сервер запущен...
+2022-02-21 20:52:27,127 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50893)
+2022-02-21 20:52:29,690 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645455149.330831, 'user': {'account_name': '1'}}
+2022-02-21 20:52:34,002 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '1', 'to': '1', 'time': 1645455153.7994258, 'mess_text': 'tttt'}
+2022-02-21 20:52:34,002 INFO core_server.py Отправлено сообщение пользователю 1 от пользователя 1.
+2022-02-21 20:56:39,589 DEBUG decos.py Была вызвана функция arg_parser_server c параметрами () , {}. Вызов из модуля common.core_server
+2022-02-21 20:56:39,589 INFO core_server.py Запущен сервер, порт для подключений: 7792, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 20:56:39,871 INFO core_server.py Запущен сервер, порт для подключений: 7792, адрес с которого принимаются подключения: . Если адрес не указан, принимаются соединения с любых адресов.
+2022-02-21 20:56:39,871 INFO core_server.py Сервер запущен...
+2022-02-21 20:56:46,230 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50903)
+2022-02-21 20:56:48,777 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645455408.480148, 'user': {'account_name': '1'}}
+2022-02-21 20:56:52,073 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '1', 'to': '1', 'time': 1645455411.5894556, 'mess_text': '1'}
+2022-02-21 20:56:52,073 INFO core_server.py Отправлено сообщение пользователю 1 от пользователя 1.
+2022-02-21 20:58:10,509 INFO core_server.py Установлено соедение с ПК ('127.0.0.1', 50916)
+2022-02-21 20:58:15,114 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'presence', 'time': 1645455494.8173904, 'user': {'account_name': '0'}}
+2022-02-21 20:58:32,855 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '1', 'to': '0', 'time': 1645455512.746602, 'mess_text': 'hi'}
+2022-02-21 20:58:32,855 INFO core_server.py Отправлено сообщение пользователю 0 от пользователя 1.
+2022-02-21 20:58:44,861 DEBUG core_server.py Разбор сообщения от клиента : {'action': 'message', 'sender': '0', 'to': '1', 'time': 1645455524.517326, 'mess_text': 'hola'}
+2022-02-21 20:58:44,861 INFO core_server.py Отправлено сообщение пользователю 1 от пользователя 0.
