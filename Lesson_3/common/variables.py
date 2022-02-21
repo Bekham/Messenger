@@ -3,7 +3,7 @@
 # Порт по умолчанию для сетевого ваимодействия
 import logging
 
-DEFAULT_PORT = 7782
+DEFAULT_PORT = 7792
 # IP адрес по умолчанию для подключения клиента
 DEFAULT_IP_ADDRESS = '127.0.0.1'
 # Максимальная очередь подключений
@@ -31,3 +31,5 @@ EXIT = 'exit'
 
 #Уровень логгирования
 LOGGING_LEVEL = logging.DEBUG
+# База данных для хранения данных сервера:
+SERVER_DATABASE = 'sqlite:///server_base.db3'

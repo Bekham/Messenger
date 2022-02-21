@@ -3,11 +3,10 @@ import json
 import select
 import socket
 import sys
+import threading
 import time
 import logging
-from common.descrptors import Port
-
-
+from common.descrptors import Port, Host
 from common.meta import ServerMaker
 
 sys.path.append('../')
@@ -20,7 +19,7 @@ from common.variables import DEFAULT_PORT, DEFAULT_IP_ADDRESS, \
 SERVER_LOGGER = logging.getLogger('server')
 
 
-# @Log()
+@log
 def arg_parser_server():
     try:
         """Парсер аргументов коммандной строки"""
@@ -42,10 +41,13 @@ def arg_parser_server():
                            f'Если адрес не указан, принимаются соединения с любых адресов.')
         return listen_address, listen_port
 
-class MessengerServerCore(metaclass=ServerMaker):
+
+class MessengerServerCore(threading.Thread, metaclass=ServerMaker):
     listen_port = Port()
+    listen_address = Host()
+
     # @Log()
-    def __init__(self, listen_address, listen_port):
+    def __init__(self, listen_address, listen_port, database):
         self.message = None
         self.listen_port = listen_port
         self.listen_address = listen_address
@@ -54,8 +56,11 @@ class MessengerServerCore(metaclass=ServerMaker):
         self.message_from_client = None
         self.clients_names = {}
         self.clients_list = []
+        # База данных сервера
+        self.database = database
         # self.SERVER_LOGGER = logging.getLogger('server')
         # self.arg_parser_server()
+        super().__init__()
 
     # @Log()
     def init_socket_server(self):
@@ -79,7 +84,7 @@ class MessengerServerCore(metaclass=ServerMaker):
         self.transport.settimeout(0.5)
 
     # @Log()
-    def start_server_listen(self):
+    def run(self):
         self.init_socket_server()
         # список клиентов , очередь сообщений
         self.clients_list = []
@@ -113,7 +118,7 @@ class MessengerServerCore(metaclass=ServerMaker):
                         self.process_client_message(client_with_message)
                     except:
                         SERVER_LOGGER.info(f'Клиент {client_with_message.getpeername()} '
-                                                f'отключился от сервера.')
+                                           f'отключился от сервера.')
                         self.clients_list.remove(client_with_message)
             if self.messages and send_data_lst:
                 for i in self.messages:
@@ -141,7 +146,11 @@ class MessengerServerCore(metaclass=ServerMaker):
                 and self.clients_names[self.message[DESTINATION]] in listen_socks:
             self.send_message(self.clients_names[self.message[DESTINATION]])
             SERVER_LOGGER.info(f'Отправлено сообщение пользователю {self.message[DESTINATION]} '
-                                    f'от пользователя {self.message[SENDER]}.')
+                               f'от пользователя {self.message[SENDER]}.')
+            self.database.add_message(
+                from_user=self.message[SENDER],
+                to_user=self.message[DESTINATION],
+                message=self.message[MESSAGE_TEXT])
         elif self.message[DESTINATION] in self.clients_names \
                 and self.clients_names[self.message[DESTINATION]] not in listen_socks:
             raise ConnectionError
@@ -187,13 +196,6 @@ class MessengerServerCore(metaclass=ServerMaker):
 
     # @Log()
     def process_client_message(self, client_with_message):
-        '''
-        Обработчик сообщений от клиентов, принимает словарь -
-        сообщение от клиtнта, проверяет корректность,
-        возвращает словарь-ответ для клиента
-        :param client:
-        :return:
-        '''
         SERVER_LOGGER.debug(f'Разбор сообщения от клиента : {self.message_from_client}')
         if ACTION in self.message_from_client \
                 and self.message_from_client[ACTION] == PRESENCE \
@@ -203,6 +205,8 @@ class MessengerServerCore(metaclass=ServerMaker):
             if self.message_from_client[USER][ACCOUNT_NAME] not in self.clients_names.keys():
                 self.clients_names[self.message_from_client[USER][ACCOUNT_NAME]] = client_with_message
                 self.message = {RESPONSE: 200}
+                client_ip, client_port = client_with_message.getpeername()
+                self.database.user_login(self.message_from_client[USER][ACCOUNT_NAME], client_ip, client_port)
                 self.send_message(client_with_message)
             else:
                 self.message = {RESPONSE: 400}
@@ -233,9 +237,13 @@ class MessengerServerCore(metaclass=ServerMaker):
         elif ACTION in self.message_from_client \
                 and self.message_from_client[ACTION] == EXIT \
                 and ACCOUNT_NAME in self.message_from_client:
+            # print(self.clients_names, self.clients_list)
+            print(f'Пользователь {self.message_from_client[ACCOUNT_NAME]} отключился.')
+            self.database.user_logout(self.message_from_client[ACCOUNT_NAME])
             self.clients_list.remove(self.clients_names[self.message_from_client[ACCOUNT_NAME]])
             self.clients_names[self.message_from_client[ACCOUNT_NAME]].close()
             del self.clients_names[self.message_from_client[ACCOUNT_NAME]]
+            # print(self.clients_names, self.clients_list)
             return
         else:
             self.message = {
