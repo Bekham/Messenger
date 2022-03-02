@@ -15,11 +15,12 @@ logger = logging.getLogger('client')
 class ClientChatWindow(QMainWindow):
     close_chat = pyqtSignal(str)
 
-    def __init__(self, database, transport, current_chat):
+    def __init__(self, database, transport, current_chat, client_name):
         super().__init__()
         # основные переменные
         self.database = database
         self.transport = transport
+        self.client_name = client_name
 
         # Загружаем конфигурацию окна из дизайнера
         self.ui = Ui_ChatClientWindow()
@@ -108,7 +109,7 @@ class ClientChatWindow(QMainWindow):
                 mess.setTextAlignment(Qt.AlignLeft)
                 self.history_model.appendRow(mess)
             else:
-                mess_sender = QStandardItem(f'{item[0]} :')
+                mess_sender = QStandardItem(f'{self.client_name} :')
                 mess_sender.setFont(QtGui.QFont("Fantasy", 10, QtGui.QFont.Bold))
                 mess_sender.setEditable(False)
                 mess_sender.setBackground(QBrush(QColor(204, 255, 204)))

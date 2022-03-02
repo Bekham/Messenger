@@ -18,12 +18,13 @@ logger = logging.getLogger('client')
 
 # Класс основного окна
 class ClientMainWindow(QMainWindow, QObject):
-    def __init__(self, database, transport, client_app):
+    def __init__(self, database, transport, client_app, client_name):
         super().__init__()
         # основные переменные
         self.database = database
         self.transport = transport
         self.client_app = client_app
+        self.client_name = client_name
         # Загружаем конфигурацию окна из дизайнера
         self.ui = Ui_MainClientWindow()
         self.ui.setupUi(self)
@@ -64,7 +65,7 @@ class ClientMainWindow(QMainWindow, QObject):
         # self.set_active_user()
 
     def start_new_chat(self):
-        self.chats[self.current_chat] = ClientChatWindow(self.database, self.transport, self.current_chat)
+        self.chats[self.current_chat] = ClientChatWindow(self.database, self.transport, self.current_chat, self.client_name)
         # new_chat = ClientChatWindow(self.database, self.transport, self.current_chat)
 
         self.chats[self.current_chat].set_active_user()

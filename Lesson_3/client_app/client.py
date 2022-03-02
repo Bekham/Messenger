@@ -63,7 +63,7 @@ if __name__ == '__main__':
         transport.start()
 
         # Создаём GUI
-        main_window = ClientMainWindow(database, transport, client_app)
+        main_window = ClientMainWindow(database, transport, client_app, client_name)
         main_window.make_connection(transport)
         main_window.setWindowTitle(f'GBMessApp - {client_name}')
 
