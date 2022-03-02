@@ -46,18 +46,18 @@ def arg_parser_server(default_port,
 
 class MessengerServerCore(threading.Thread, metaclass=ServerMaker):
     listen_port = Port()
-    listen_address = Host()
+    # listen_address = Host()
 
     # @Log()
     def __init__(self, listen_address, listen_port, database):
-        self.message = None
+        # self.message = None
         self.listen_port = listen_port
         self.listen_address = listen_address
         self.transport = None
+        self.clients = []
         self.messages = []
         self.message_from_client = None
         self.clients_names = {}
-        self.clients_list = []
         # База данных сервера
         self.database = database
         self.new_connection = False
@@ -75,7 +75,8 @@ class MessengerServerCore(threading.Thread, metaclass=ServerMaker):
         try:
             self.transport.bind((self.listen_address, self.listen_port))
         except OSError:
-            print()
+            print(f'Порт для подключений {self.listen_port} занят!'
+                f'Производится смена порта на: {self.listen_port + 1}. ')
             SERVER_LOGGER.info(
                 f'Порт для подключений {self.listen_port} занят!'
                 f'Производится смена порта на: {self.listen_port + 1}. ')
@@ -84,41 +85,38 @@ class MessengerServerCore(threading.Thread, metaclass=ServerMaker):
                 self.transport.bind((self.listen_address, self.listen_port))
             except OSError:
                 self.init_socket_server()
+        # Слушаем порт
         self.transport.settimeout(0.5)
+        self.transport.listen()
 
     # @Log()
     def run(self):
         self.init_socket_server()
-        # список клиентов , очередь сообщений
-        self.clients_list = []
-        self.messages = []
-        # Слушаем порт
-        self.transport.listen(MAX_CONNECTIONS)
+        # список клиентов, очередь сообщений
         SERVER_LOGGER.info('Сервер запущен...')
         # Основной цикл программы сервера
         while True:
             try:
                 client, client_address = self.transport.accept()
             except OSError:
-                print('OS ERROR')
-
+                # print('OS ERROR')
+                pass
             else:
                 SERVER_LOGGER.info(f'Установлено соедение с ПК {client_address}')
-                self.clients_list.append(client)
+                self.clients.append(client)
             recv_data_lst = []
             send_data_lst = []
             err_lst = []
             # Проверяем на наличие ждущих клиентов
             try:
-                if self.clients_list:
-                    recv_data_lst, send_data_lst, err_lst = select.select(self.clients_list, self.clients_list, [], 0)
+                if self.clients:
+                    recv_data_lst, send_data_lst, err_lst = select.select(self.clients, self.clients, [], 0)
             except OSError as err:
                 SERVER_LOGGER.error(f'Ошибка работы с сокетами: {err}')
             if recv_data_lst:
                 for client_with_message in recv_data_lst:
                     try:
-                        self.message_from_client = self.get_message(client_with_message)
-                        self.process_client_message(client_with_message)
+                        self.process_client_message(self.get_message(client_with_message), client_with_message)
                     except (OSError):
                         SERVER_LOGGER.info(f'Клиент {client_with_message.getpeername()} '
                                            f'отключился от сервера.')
@@ -127,20 +125,23 @@ class MessengerServerCore(threading.Thread, metaclass=ServerMaker):
                                 self.database.user_logout(name)
                                 del self.clients_names[name]
                                 break
-                        self.clients_list.remove(client_with_message)
-            if self.messages and send_data_lst:
+                        self.clients.remove(client_with_message)
+                        with conflag_lock:
+                            self.new_connection = True
+            if self.messages:
                 for i in self.messages:
                     try:
-                        self.message = i
-                        self.process_message(send_data_lst)
+                        self.process_message(i, send_data_lst)
                     except (ConnectionAbortedError, ConnectionError, ConnectionResetError, ConnectionRefusedError):
                         SERVER_LOGGER.info(f'Связь с клиентом с именем {i[DESTINATION]} была потеряна')
-                        self.clients_list.remove(self.clients_names[i[DESTINATION]])
+                        self.clients.remove(self.clients_names[i[DESTINATION]])
                         del self.clients_names[i[DESTINATION]]
+                        with conflag_lock:
+                            self.new_connection = True
                 self.messages.clear()
 
-    # @Log()
-    def process_message(self, listen_socks):
+    @log
+    def process_message(self, message, listen_socks):
         """
         Функция адресной отправки сообщения определённому клиенту. Принимает словарь сообщение,
         список зарегистрированых пользователей и слушающие сокеты. Ничего не возвращает.
@@ -149,40 +150,21 @@ class MessengerServerCore(threading.Thread, metaclass=ServerMaker):
         :param listen_socks:
         :return:
         """
-
-        if self.message[DESTINATION] in self.clients_names \
-                and self.clients_names[self.message[DESTINATION]] in listen_socks:
-            self.send_message(self.clients_names[self.message[DESTINATION]])
-            SERVER_LOGGER.info(f'Отправлено сообщение пользователю {self.message[DESTINATION]} '
-                               f'от пользователя {self.message[SENDER]}.')
+        if message[DESTINATION] in self.clients_names \
+                and self.clients_names[message[DESTINATION]] in listen_socks:
+            self.send_message(self.clients_names[message[DESTINATION]], message)
+            SERVER_LOGGER.info(f'Отправлено сообщение пользователю {message[DESTINATION]} '
+                               f'от пользователя {message[SENDER]}.')
             self.database.add_message(
-                from_user=self.message[SENDER],
-                to_user=self.message[DESTINATION],
-                message=self.message[MESSAGE_TEXT])
-        elif self.message[DESTINATION] in self.clients_names \
-                and self.clients_names[self.message[DESTINATION]] not in listen_socks:
+                from_user=message[SENDER],
+                to_user=message[DESTINATION],
+                message=message[MESSAGE_TEXT])
+        elif message[DESTINATION] in self.clients_names \
+                and self.clients_names[message[DESTINATION]] not in listen_socks:
             raise ConnectionError
-
-        elif ACTION in self.message \
-                and self.message[ACTION] == MESSAGE \
-                and DESTINATION not in self.message \
-                and SENDER not in self.message:
-            self.message = {
-                ACTION: MESSAGE,
-                SENDER: self.message[0],
-                TIME: time.time(),
-                MESSAGE_TEXT: self.message[1]
-            }
-            for waiting_client in listen_socks:
-                try:
-                    self.send_message(waiting_client)
-                except:
-                    SERVER_LOGGER.info(f'Клиент {waiting_client.getpeername()} отключился от сервера.')
-                    self.clients_list.remove(waiting_client)
-            return
         else:
             SERVER_LOGGER.error(
-                f'Пользователь {self.message[DESTINATION]} не зарегистрирован на сервере, '
+                f'Пользователь {message[DESTINATION]} не зарегистрирован на сервере, '
                 f'отправка сообщения невозможна.')
 
     def get_message(self, client):
@@ -203,111 +185,112 @@ class MessengerServerCore(threading.Thread, metaclass=ServerMaker):
         raise ValueError
 
     # @Log()
-    def process_client_message(self, client_with_message):
+    def process_client_message(self, message, client):
         # global new_connection
         SERVER_LOGGER.debug(f'Разбор сообщения от клиента : {self.message_from_client}')
-        if ACTION in self.message_from_client \
-                and self.message_from_client[ACTION] == PRESENCE \
-                and TIME in self.message_from_client \
-                and USER in self.message_from_client:
-            if self.message_from_client[USER][ACCOUNT_NAME] not in self.clients_names.keys():
-                self.clients_names[self.message_from_client[USER][ACCOUNT_NAME]] = client_with_message
-                self.message = {RESPONSE: 200}
-                client_ip, client_port = client_with_message.getpeername()
-                self.database.user_login(self.message_from_client[USER][ACCOUNT_NAME], client_ip, client_port)
-                self.send_message(client_with_message)
-                print('Send presence OK')
+        if ACTION in message \
+                and message[ACTION] == PRESENCE \
+                and TIME in message \
+                and USER in message:
+            if message[USER][ACCOUNT_NAME] not in self.clients_names.keys():
+                self.clients_names[message[USER][ACCOUNT_NAME]] = client
+                client_ip, client_port = client.getpeername()
+                self.database.user_login(message[USER][ACCOUNT_NAME], client_ip, client_port)
+                self.send_message(client, {RESPONSE: 200})
+                # print(f'Send presence OK to {message[USER][ACCOUNT_NAME]}')
                 with conflag_lock:#add_new
                     self.new_connection = True
             else:
-                self.message = {RESPONSE: 400}
-                self.message[ERROR] = 'Имя пользователя уже занято.'
-                self.send_message(client_with_message)
-                self.clients_list.remove(client_with_message)
-                client_with_message.close()
+                message_error = {RESPONSE: 400}
+                message_error[ERROR] = 'Имя пользователя уже занято.'
+                print(message_error)
+                self.send_message(client, message_error)
+                self.clients.remove(client)
+                client.close()
             return
 
-        elif ACTION in self.message_from_client \
-                and self.message_from_client[ACTION] == MESSAGE \
-                and TIME in self.message_from_client \
-                and DESTINATION not in self.message_from_client \
-                and SENDER not in self.message_from_client \
-                and MESSAGE_TEXT in self.message_from_client \
-                and self.clients_names[self.message_from_client[SENDER]] == client_with_message:
-            self.messages.append(self.message_from_client)
-            return
         # Если это сообщение, то добавляем его в очередь сообщений.
         # Ответ не требуется.
-        elif ACTION in self.message_from_client \
-                and self.message_from_client[ACTION] == MESSAGE \
-                and DESTINATION in self.message_from_client \
-                and TIME in self.message_from_client \
-                and SENDER in self.message_from_client \
-                and MESSAGE_TEXT in self.message_from_client \
-                and self.clients_names[self.message_from_client[SENDER]] == client_with_message:
-            self.messages.append(self.message_from_client)
-            self.database.process_client_message(self.message_from_client[SENDER], self.message_from_client[DESTINATION])
+        elif ACTION in message \
+                and message[ACTION] == MESSAGE \
+                and DESTINATION in message \
+                and TIME in message \
+                and SENDER in message \
+                and MESSAGE_TEXT in message \
+                and self.clients_names[message[SENDER]] == client:
+
+            all_users = [contact[0] for contact in self.database.users_list()]
+            if message[DESTINATION] in self.clients_names:
+                self.messages.append(message)
+                self.database.process_message(message[SENDER], message[DESTINATION])
+                self.send_message(client, RESPONSE_200)
+            elif message[DESTINATION] in all_users:
+                print(all_users)
+                response = RESPONSE_400
+                response[ERROR] = f'Пользователь {message[DESTINATION]} офлайн. Напишите позже.'
+                self.send_message(client, response)
+            else:
+                response = RESPONSE_400
+                response[ERROR] = 'Пользователь не зарегистрирован на сервере.'
+                self.send_message(client, response)
             return
 
             # Если клиент выходит
-        elif ACTION in self.message_from_client \
-                and self.message_from_client[ACTION] == EXIT \
-                and ACCOUNT_NAME in self.message_from_client \
-                and self.clients_names[self.message_from_client[ACCOUNT_NAME]] == client_with_message:
+        elif ACTION in message \
+                and message[ACTION] == EXIT \
+                and ACCOUNT_NAME in message \
+                and self.clients_names[message[ACCOUNT_NAME]] == client:
             # print(self.clients_names, self.clients_list)
-            self.database.user_logout(self.message_from_client[ACCOUNT_NAME])
-            print(f'Пользователь {self.message_from_client[ACCOUNT_NAME]} отключился.')
-            self.database.user_logout(self.message_from_client[ACCOUNT_NAME])
-            self.clients_list.remove(self.clients_names[self.message_from_client[ACCOUNT_NAME]])
-            self.clients_names[self.message_from_client[ACCOUNT_NAME]].close()
-            del self.clients_names[self.message_from_client[ACCOUNT_NAME]]
+            self.database.user_logout(message[ACCOUNT_NAME])
+            SERVER_LOGGER.info(f'Пользователь {message[ACCOUNT_NAME]} отключился.')
+            self.clients.remove(self.clients_names[message[ACCOUNT_NAME]])
+            self.clients_names[message[ACCOUNT_NAME]].close()
+            del self.clients_names[message[ACCOUNT_NAME]]
             # print(self.clients_names, self.clients_list)
             with conflag_lock:#add_new
                 self.new_connection = True
             return
         # Если это запрос контакт-листа
-        elif ACTION in self.message_from_client and self.message_from_client[ACTION] == GET_CONTACTS \
-                and USER in self.message_from_client and \
-                self.clients_names[self.message_from_client[USER]] == client_with_message:
-            self.message = RESPONSE_202
-            self.message[LIST_INFO] = self.database.get_contacts(self.message_from_client[USER])
-            self.send_message(client_with_message)#add_new
+        elif ACTION in message \
+                and message[ACTION] == GET_CONTACTS \
+                and USER in message \
+                and self.clients_names[message[USER]] == client:
+            response = RESPONSE_202
+            response[LIST_INFO] = self.database.get_contacts(message[USER])
+            self.send_message(client, response)#add_new
 
-        elif ACTION in self.message_from_client \
-                and self.message_from_client[ACTION] == ADD_CONTACT \
-                and ACCOUNT_NAME in self.message_from_client \
-                and USER in self.message_from_client \
-                 and self.clients_names[self.message_from_client[USER]] == client_with_message:
-            self.database.add_contact(self.message_from_client[USER], self.message_from_client[ACCOUNT_NAME])
-            self.message = RESPONSE_200
-            self.send_message(client_with_message)  # add_new
+        elif ACTION in message \
+                and message[ACTION] == ADD_CONTACT \
+                and ACCOUNT_NAME in message \
+                and USER in message \
+                and self.clients_names[message[USER]] == client:
+            self.database.add_contact(message[USER], message[ACCOUNT_NAME])
+            self.send_message(client, RESPONSE_200)  # add_new
 
             # Если это удаление контакта
-        elif ACTION in self.message_from_client \
-                and self.message_from_client[ACTION] == REMOVE_CONTACT \
-                and ACCOUNT_NAME in self.message_from_client \
-                and USER in self.message_from_client \
-                 and self.clients_names[self.message_from_client[USER]] == client_with_message:
-            self.database.remove_contact(self.message_from_client[USER], self.message_from_client[ACCOUNT_NAME])
-            self.message = RESPONSE_200
-            self.send_message(client_with_message)  # add_new
+        elif ACTION in message \
+                and message[ACTION] == REMOVE_CONTACT \
+                and ACCOUNT_NAME in message \
+                and USER in message \
+                and self.clients_names[message[USER]] == client:
+            self.database.remove_contact(message[USER], message[ACCOUNT_NAME])
+            self.send_message(client, RESPONSE_200)  # add_new
 
         # Если это запрос известных пользователей
-        elif ACTION in self.message_from_client \
-                and self.message_from_client[ACTION] == USERS_REQUEST \
-                and ACCOUNT_NAME in self.message_from_client \
-                and self.clients_names[self.message_from_client[ACCOUNT_NAME]] == client_with_message:
-            self.message = RESPONSE_202
-            self.message[LIST_INFO] = [user[0]
-                                   for user in self.database.users_list()]
-            self.send_message(client_with_message)  # add_new
+        elif ACTION in message \
+                and message[ACTION] == USERS_REQUEST \
+                and ACCOUNT_NAME in message \
+                and self.clients_names[message[ACCOUNT_NAME]] == client:
+            response = RESPONSE_202
+            response[LIST_INFO] = [user[0] for user in self.database.users_list()]
+            self.send_message(client, response)  # add_new
         else:
-            self.message = RESPONSE_400
-            self.message[ERROR] = 'Запрос некорректен.'
-            self.send_message(client_with_message)
+            response = RESPONSE_400
+            response[ERROR] = 'Запрос некорректен.'
+            self.send_message(client, response)
             return
 
-    def send_message(self, socket):
-        js_message = json.dumps(self.message)
+    def send_message(self, socket, message):
+        js_message = json.dumps(message)
         encoded_message = js_message.encode(ENCODING)
         socket.send(encoded_message)

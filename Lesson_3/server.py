@@ -9,13 +9,26 @@ from common.core_server import MessengerServerCore, arg_parser_server, conflag_l
 from common.server_database import ServerStorage
 from server_gui import MainWindow, gui_create_model, HistoryWindow, create_stat_model, ConfigWindow
 
+# Загрузка файла конфигурации
+def config_load():
+    config = configparser.ConfigParser()
+    dir_path = os.path.dirname(os.path.realpath(__file__))
+    config.read(f"{dir_path}/{'server.ini'}")
+    # Если конфиг файл загружен правильно, запускаемся, иначе конфиг по умолчанию.
+    if 'SETTINGS' in config:
+        return config
+    else:
+        config.add_section('SETTINGS')
+        config.set('SETTINGS', 'Default_port', str(DEFAULT_PORT))
+        config.set('SETTINGS', 'Listen_Address', '')
+        config.set('SETTINGS', 'Database_path', '')
+        config.set('SETTINGS', 'Database_file', 'server_database.db3')
+        return config
+
 
 def main():
     # Загрузка файла конфигурации сервера
-    config = configparser.ConfigParser()
-
-    dir_path = os.path.dirname(os.path.realpath(__file__))
-    config.read(f"{dir_path}/{'server.ini'}")
+    config = config_load()
     listen_address, listen_port = arg_parser_server(config['SETTINGS']['Default_port'],
                                                         config['SETTINGS']['Listen_Address'])
         # Инициализация базы данных
@@ -26,7 +39,7 @@ def main():
 
     # Создание экземпляра класса - сервера и его запуск:
     start_server = MessengerServerCore(listen_address, listen_port, database)
-    new_connection = start_server.new_connection
+    # new_connection = start_server.new_connection
     start_server.daemon = True
     start_server.start()
 

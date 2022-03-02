@@ -280,7 +280,7 @@ class MessengerCore:
     @Log()
     def arg_parser_client(self):
         '''Загружаем параметы коммандной строки'''
-        # client.py 192.168.1.2 8079
+        # client_1.py 192.168.1.2 8079
         parser = argparse.ArgumentParser()
         parser.add_argument('addr', default=DEFAULT_IP_ADDRESS, nargs='?')
         parser.add_argument('port', default=DEFAULT_PORT, type=int, nargs='?')

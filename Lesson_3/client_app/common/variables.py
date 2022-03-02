@@ -1,9 +1,7 @@
-"""Константы"""
-
-# Порт по умолчанию для сетевого ваимодействия
 import logging
 
-DEFAULT_PORT = 7786
+# Порт поумолчанию для сетевого ваимодействия
+DEFAULT_PORT = 7777
 # IP адрес по умолчанию для подключения клиента
 DEFAULT_IP_ADDRESS = '127.0.0.1'
 # Максимальная очередь подключений
@@ -12,6 +10,10 @@ MAX_CONNECTIONS = 5
 MAX_PACKAGE_LENGTH = 1024
 # Кодировка проекта
 ENCODING = 'utf-8'
+# Текущий уровень логирования
+LOGGING_LEVEL = logging.DEBUG
+# База данных для хранения данных сервера:
+SERVER_CONFIG = 'client.ini'
 
 # Прококол JIM основные ключи:
 ACTION = 'action'
@@ -34,11 +36,6 @@ REMOVE_CONTACT = 'remove'
 ADD_CONTACT = 'add'
 USERS_REQUEST = 'get_users'
 
-#Уровень логгирования
-LOGGING_LEVEL = logging.DEBUG
-# База данных для хранения данных сервера:
-SERVER_DATABASE = 'sqlite:///server_base.db3'
-
 # Словари - ответы:
 # 200
 RESPONSE_200 = {RESPONSE: 200}
@@ -51,3 +48,4 @@ RESPONSE_400 = {
             RESPONSE: 400,
             ERROR: None
         }
+

@@ -187,7 +187,7 @@ class ServerStorage:
         # Применяем изменения
         self.session.commit()
 
-    def process_client_message(self, sender, recipient):
+    def process_message(self, sender, recipient):
         # Получаем ID отправителя и получателя
         sender = self.session.query(self.AllUsers).filter_by(name=sender).first().id
         recipient = self.session.query(self.AllUsers).filter_by(name=recipient).first().id
