@@ -69,7 +69,7 @@ class Ui_ChatClientWindow(object):
         ChatClientWindow.setWindowTitle(_translate("ChatClientWindow", "Чат Программа alpha release"))
         self.label_history.setText(_translate("ChatClientWindow", "История сообщений:"))
         self.label_new_message.setText(_translate("ChatClientWindow", "Введите новое сообщение:"))
-        self.btn_send.setText(_translate("ChatClientWindow", "Отправить сообщение"))
+        self.btn_send.setText(_translate("ChatClientWindow", "Отправить сообщение\nCtrl+Enter"))
         self.btn_clear.setText(_translate("ChatClientWindow", "Очистить поле"))
         self.menu.setTitle(_translate("ChatClientWindow", "Файл"))
         self.menu_exit.setText(_translate("ChatClientWindow", "Выход"))

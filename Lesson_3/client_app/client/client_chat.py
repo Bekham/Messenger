@@ -1,3 +1,7 @@
+import base64
+
+from Crypto.Cipher import PKCS1_OAEP
+from Crypto.PublicKey import RSA
 from PyQt5 import QtGui
 from PyQt5.QtWidgets import QMainWindow, qApp, QMessageBox, QApplication, QListView
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QBrush, QColor
@@ -6,6 +10,7 @@ import sys
 import json
 import logging
 from client.client_chat_conv import Ui_ChatClientWindow
+from common.variables import KEY_CTRL, KEY_ENTER
 
 sys.path.append('../')
 logger = logging.getLogger('client')
@@ -25,7 +30,9 @@ class ClientChatWindow(QMainWindow):
         # Загружаем конфигурацию окна из дизайнера
         self.ui = Ui_ChatClientWindow()
         self.ui.setupUi(self)
-
+        self.current_chat = None
+        self.current_chat_key = None
+        self.encryptor = None
         # Кнопка "Выход"
         self.ui.menu_exit.triggered.connect(self.close_current_chat)
 
@@ -43,17 +50,25 @@ class ClientChatWindow(QMainWindow):
 
         # self.clients_list_update()
         self.set_disabled_input()
+        self.ctrl_enter = 0
 
-        # self.show()
+        self.show()
 
-    def pressedKeys(self, e):
-        print(e)
+    def keyPressEvent(self, event):
+        if event.key() == KEY_CTRL and self.ctrl_enter == 0:
+            self.ctrl_enter += 1
+        if event.key() == KEY_ENTER and self.ctrl_enter == 1:
+            self.ctrl_enter += 1
+            self.send_message()
+            self.ctrl_enter = 0
+
 
     def closeEvent(self, event):
         self.close_current_chat()
         event.accept()
 
     def close_current_chat(self):
+        # print('close chat')
         self.close_chat.emit(self.current_chat)
         self.close()
 
@@ -73,7 +88,8 @@ class ClientChatWindow(QMainWindow):
     # Заполняем историю сообщений.
     def history_list_update(self):
         # Получаем историю сортированную по дате
-        list = sorted(self.database.get_history(self.current_chat), key=lambda item: item[3])
+        list = sorted(self.database.get_history(self.current_chat),
+                      key=lambda item: item[3])
         # Если модель не создана, создадим.
         if not self.history_model:
             self.history_model = QStandardItemModel()
@@ -131,6 +147,25 @@ class ClientChatWindow(QMainWindow):
 
     # Функция устанавливающяя активного собеседника
     def set_active_user(self):
+        '''Метод активации чата с собеседником.'''
+        # Запрашиваем публичный ключ пользователя и создаём объект шифрования
+        try:
+            self.current_chat_key = self.transport.key_request(
+                self.current_chat)
+            logger.debug(f'Загружен открытый ключ для {self.current_chat}')
+            if self.current_chat_key:
+                self.encryptor = PKCS1_OAEP.new(
+                    RSA.import_key(self.current_chat_key))
+        except (OSError, json.JSONDecodeError):
+            self.current_chat_key = None
+            self.encryptor = None
+            logger.debug(f'Не удалось получить ключ для {self.current_chat}')
+
+        # Если ключа нет то ошибка, что не удалось начать чат с пользователем
+        if not self.current_chat_key:
+            self.messages.warning(
+                self, 'Ошибка', 'Для выбранного пользователя нет ключа шифрования.')
+            return
         # Ставим надпись и активируем кнопки
         self.ui.label_new_message.setText(f'Введите сообщенние для {self.current_chat}:')
         self.ui.btn_clear.setDisabled(False)
@@ -147,8 +182,15 @@ class ClientChatWindow(QMainWindow):
         self.ui.text_message.clear()
         if not message_text:
             return
+        message_text_encrypted = self.encryptor.encrypt(
+            message_text.encode('utf8'))
+        message_text_encrypted_base64 = base64.b64encode(
+            message_text_encrypted)
         try:
-            response = self.transport.send_message(self.current_chat, message_text)
+            response = self.transport.send_message(
+                self.current_chat,
+                message_text_encrypted_base64.decode('ascii'))
+            pass
         # except ServerError as err:
         #     self.messages_chat.information(self, 'Ошибка', err.text)
         #     pass
