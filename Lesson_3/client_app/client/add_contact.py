@@ -1,16 +1,19 @@
 import sys
 import logging
+from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QDialog, QLabel, QComboBox, QPushButton
+
 
 sys.path.append('../')
-from PyQt5.QtWidgets import QDialog, QLabel, QComboBox, QPushButton
-from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QStandardItemModel, QStandardItem
 
 logger = logging.getLogger('client')
 
 
-# Диалог выбора контакта для добавления
 class AddContactDialog(QDialog):
+    '''
+    Диалог выбора контакта для добавления
+    '''
+
     def __init__(self, transport, database):
         super().__init__()
         self.transport = transport
@@ -47,13 +50,16 @@ class AddContactDialog(QDialog):
         # Назначаем действие на кнопку обновить
         self.btn_refresh.clicked.connect(self.update_possible_contacts)
 
-    # Заполняем список возможных контактов разницей между всеми пользователями и
     def possible_contacts_update(self):
+        '''
+        Заполняем список возможных контактов разницей между всеми пользователями
+        '''
         self.selector.clear()
         # множества всех контактов и контактов клиента
         contacts_list = set(self.database.get_contacts())
         users_list = set(self.database.get_users())
-        # Удалим сами себя из списка пользователей, чтобы нельзя было добавить самого себя
+        # Удалим сами себя из списка пользователей, чтобы нельзя было добавить
+        # самого себя
         users_list.remove(self.transport.username)
         # Добавляем список возможных контактов
         self.selector.addItems(users_list - contacts_list)
@@ -61,6 +67,10 @@ class AddContactDialog(QDialog):
     # Обновлялка возможных контактов. Обновляет таблицу известных пользователей,
     # затем содержимое предполагаемых контактов
     def update_possible_contacts(self):
+        '''
+        Обновлялка возможных контактов. Обновляет таблицу известных пользователей,
+        затем содержимое предполагаемых контактов
+        '''
         try:
             self.transport.user_list_update()
         except OSError:

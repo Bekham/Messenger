@@ -4,8 +4,8 @@ import sys
 import os
 import unittest
 # sys.path.append(os.path.join(os.getcwd(), ''))
-from common.variables import RESPONSE, ERROR, USER, ACCOUNT_NAME, TIME, ACTION, PRESENCE
-from common.core import MessengerCore
+from common_server.variables import RESPONSE, ERROR, USER, ACCOUNT_NAME, TIME, ACTION, PRESENCE
+from common_server.core_server import MessengerServerCore
 
 class TestServer(unittest.TestCase):
     '''

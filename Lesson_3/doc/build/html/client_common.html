@@ -1,0 +1,189 @@
+
+<!DOCTYPE html>
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Common package &#8212; документация GBMessApp </title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="next" title="Logs package" href="client_logs.html" />
+    <link rel="prev" title="Client module documentation" href="client.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="common-package">
+<h1>Common package<a class="headerlink" href="#common-package" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Пакет общих утилит, использующихся в разных модулях проекта.</p>
+<section id="client-core-py">
+<h2>client_core.py<a class="headerlink" href="#client-core-py" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="client_app.common_client.client_core.ClientTransport">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">client_app.common_client.client_core.</span></span><span class="sig-name descname"><span class="pre">ClientTransport</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ip_address</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">database</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">passwd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keys</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#client_app.common_client.client_core.ClientTransport" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Класс реализующий транспортную подсистему клиентского
+модуля. Отвечает за взаимодействие с сервером.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="client_app.common_client.client_core.ClientTransport.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#client_app.common_client.client_core.ClientTransport.run" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Method representing the thread’s activity.</p>
+<p>You may override this method in a subclass. The standard run() method
+invokes the callable object passed to the object’s constructor as the
+target argument, if any, with sequential and keyword arguments taken
+from the args and kwargs arguments, respectively.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="module-client_app.common_client.decos">
+<span id="decos-py"></span><h3>Скрипт decos.py<a class="headerlink" href="#module-client_app.common_client.decos" title="Ссылка на этот заголовок">¶</a></h3>
+<dl class="py function">
+<dt class="sig sig-object py" id="client_app.common_client.decos.log">
+<span class="sig-prename descclassname"><span class="pre">client_app.common_client.decos.</span></span><span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func_to_log</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#client_app.common_client.decos.log" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Декоратор логирования для сохранения дополнительной информации о
+вызываемой функции в режиме debug</p>
+</dd></dl>
+
+</section>
+<section id="errors-py">
+<h3>Скрипт errors.py<a class="headerlink" href="#errors-py" title="Ссылка на этот заголовок">¶</a></h3>
+<dl class="py class">
+<dt class="sig sig-object py" id="client_app.common_client.errors.ServerError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">client_app.common_client.errors.</span></span><span class="sig-name descname"><span class="pre">ServerError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#client_app.common_client.errors.ServerError" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Класс - исключение, для обработки ошибок сервера.
+При генерации требует строку с описанием ошибки,
+полученную с сервера.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="client_app.common_client.errors.ReqFieldMissingError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">client_app.common_client.errors.</span></span><span class="sig-name descname"><span class="pre">ReqFieldMissingError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">missing_field</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#client_app.common_client.errors.ReqFieldMissingError" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Класс - исключение, отсутствует обязательное поле в принятом словаре.</p>
+</dd></dl>
+
+</section>
+<section id="utils-py">
+<h3>Скрипт utils.py<a class="headerlink" href="#utils-py" title="Ссылка на этот заголовок">¶</a></h3>
+<p>client_app.common_client.utils. <strong>get_message</strong> (client)</p>
+<blockquote>
+<div><p>Функция приёма сообщений от удалённых компьютеров. Принимает сообщения JSON,
+декодирует полученное сообщение и проверяет что получен словарь.</p>
+</div></blockquote>
+<p>client_app.common_client.utils. <strong>send_message</strong> (sock, message)</p>
+<blockquote>
+<div><p>Функция отправки словарей через сокет. Кодирует словарь в формат JSON и отправляет через сокет.</p>
+</div></blockquote>
+</section>
+<section id="variables-py">
+<h3>Скрипт variables.py<a class="headerlink" href="#variables-py" title="Ссылка на этот заголовок">¶</a></h3>
+<p>Содержит разные глобальные переменные проекта.</p>
+</section>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">GBMessApp</a></h1>
+
+
+
+
+
+
+
+
+<h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="client.html">Client module documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Common package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#client-core-py">client_core.py</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-client_app.common_client.decos">Скрипт decos.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errors-py">Скрипт errors.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#utils-py">Скрипт utils.py</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variables-py">Скрипт variables.py</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="client_logs.html">Logs package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="launcher.html">Launcher module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server.html">Server module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server_common.html">Common package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="server_logs.html">Logs package</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="client.html" title="предыдущая глава">Client module documentation</a></li>
+      <li>Next: <a href="client_logs.html" title="следующая глава">Logs package</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Быстрый поиск</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Anton.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 4.4.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/client_common.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

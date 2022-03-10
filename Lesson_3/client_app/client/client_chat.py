@@ -1,3 +1,6 @@
+import sys
+import json
+import logging
 import base64
 
 from Crypto.Cipher import PKCS1_OAEP
@@ -6,18 +9,18 @@ from PyQt5 import QtGui
 from PyQt5.QtWidgets import QMainWindow, qApp, QMessageBox, QApplication, QListView
 from PyQt5.QtGui import QStandardItemModel, QStandardItem, QBrush, QColor
 from PyQt5.QtCore import pyqtSlot, QEvent, Qt, pyqtSignal, QObject
-import sys
-import json
-import logging
-from client.client_chat_conv import Ui_ChatClientWindow
-from common.variables import KEY_CTRL, KEY_ENTER
+
+from client_app.client.client_chat_conv import Ui_ChatClientWindow
+from client_app.common_client.variables import KEY_CTRL, KEY_ENTER
 
 sys.path.append('../')
 logger = logging.getLogger('client')
 
 
-# Класс основного окна
 class ClientChatWindow(QMainWindow):
+    '''
+    Класс окна обмена сообщениями с контактом
+    '''
     close_chat = pyqtSignal(str)
 
     def __init__(self, database, transport, current_chat, client_name):
@@ -45,7 +48,8 @@ class ClientChatWindow(QMainWindow):
         self.messages_chat = QMessageBox()
 
         self.current_chat = current_chat
-        self.ui.list_messages.setHorizontalScrollBarPolicy(Qt.ScrollBarAlwaysOff)
+        self.ui.list_messages.setHorizontalScrollBarPolicy(
+            Qt.ScrollBarAlwaysOff)
         self.ui.list_messages.setWordWrap(True)
 
         # self.clients_list_update()
@@ -55,6 +59,8 @@ class ClientChatWindow(QMainWindow):
         self.show()
 
     def keyPressEvent(self, event):
+        '''Отлавливание события отправки сообщения путем нажатия Ctrl+Enter'''
+
         if event.key() == KEY_CTRL and self.ctrl_enter == 0:
             self.ctrl_enter += 1
         if event.key() == KEY_ENTER and self.ctrl_enter == 1:
@@ -62,20 +68,22 @@ class ClientChatWindow(QMainWindow):
             self.send_message()
             self.ctrl_enter = 0
 
-
     def closeEvent(self, event):
+        '''При закрытии текущего окна обмена сообщениями идет передача сигнала фукцции close_current_chat'''
+
         self.close_current_chat()
         event.accept()
 
     def close_current_chat(self):
-        # print('close chat')
+        '''Отправка сигнала в класс основного окна для удаления текущего чата из списка активных чатов'''
         self.close_chat.emit(self.current_chat)
         self.close()
 
-    # # Деактивировать поля ввода
     def set_disabled_input(self):
+        '''Деактивировать поля ввода'''
         # Надпись  - получатель.
-        self.ui.label_new_message.setText('Для выбора получателя дважды кликните на нем в окне контактов.')
+        self.ui.label_new_message.setText(
+            'Для выбора получателя дважды кликните на нем в окне контактов.')
         self.ui.text_message.clear()
         if self.history_model:
             self.history_model.clear()
@@ -85,8 +93,8 @@ class ClientChatWindow(QMainWindow):
         self.ui.btn_send.setDisabled(True)
         self.ui.text_message.setDisabled(True)
 
-    # Заполняем историю сообщений.
     def history_list_update(self):
+        '''Обновление истории сообщений'''
         # Получаем историю сортированную по дате
         list = sorted(self.database.get_history(self.current_chat),
                       key=lambda item: item[3])
@@ -106,8 +114,13 @@ class ClientChatWindow(QMainWindow):
         for i in range(start_index, length):
             item = list[i]
             if item[1] == 'in':
+                # Форматирование поля истории сообщений
                 mess_sender = QStandardItem(f'{item[0]} :')
-                mess_sender.setFont(QtGui.QFont("Fantasy", 10, QtGui.QFont.Bold))
+                mess_sender.setFont(
+                    QtGui.QFont(
+                        "Fantasy",
+                        10,
+                        QtGui.QFont.Bold))
                 mess_sender.setEditable(False)
                 mess_sender.setBackground(QBrush(QColor(255, 213, 213)))
                 mess_sender.setTextAlignment(Qt.AlignLeft)
@@ -126,7 +139,11 @@ class ClientChatWindow(QMainWindow):
                 self.history_model.appendRow(mess)
             else:
                 mess_sender = QStandardItem(f'{self.client_name} :')
-                mess_sender.setFont(QtGui.QFont("Fantasy", 10, QtGui.QFont.Bold))
+                mess_sender.setFont(
+                    QtGui.QFont(
+                        "Fantasy",
+                        10,
+                        QtGui.QFont.Bold))
                 mess_sender.setEditable(False)
                 mess_sender.setBackground(QBrush(QColor(204, 255, 204)))
                 mess_sender.setTextAlignment(Qt.AlignRight)
@@ -145,7 +162,6 @@ class ClientChatWindow(QMainWindow):
                 self.history_model.appendRow(mess)
         self.ui.list_messages.scrollToBottom()
 
-    # Функция устанавливающяя активного собеседника
     def set_active_user(self):
         '''Метод активации чата с собеседником.'''
         # Запрашиваем публичный ключ пользователя и создаём объект шифрования
@@ -167,7 +183,8 @@ class ClientChatWindow(QMainWindow):
                 self, 'Ошибка', 'Для выбранного пользователя нет ключа шифрования.')
             return
         # Ставим надпись и активируем кнопки
-        self.ui.label_new_message.setText(f'Введите сообщенние для {self.current_chat}:')
+        self.ui.label_new_message.setText(
+            f'Введите сообщенние для {self.current_chat}:')
         self.ui.btn_clear.setDisabled(False)
         self.ui.btn_send.setDisabled(False)
         self.ui.text_message.setDisabled(False)
@@ -175,9 +192,10 @@ class ClientChatWindow(QMainWindow):
         # Заполняем окно историю сообщений по требуемому пользователю.
         self.history_list_update()
 
-    # Функция отправки сообщения пользователю.
     def send_message(self):
-        # Текст в поле, проверяем что поле не пустое затем забирается сообщение и поле очищается
+        '''Функция отправки сообщения пользователю.'''
+        # Текст в поле, проверяем что поле не пустое затем забирается сообщение
+        # и поле очищается
         message_text = self.ui.text_message.toPlainText()
         self.ui.text_message.clear()
         if not message_text:
@@ -191,27 +209,23 @@ class ClientChatWindow(QMainWindow):
                 self.current_chat,
                 message_text_encrypted_base64.decode('ascii'))
             pass
-        # except ServerError as err:
-        #     self.messages_chat.information(self, 'Ошибка', err.text)
-        #     pass
         except OSError as err:
             if err.errno:
-                self.messages_chat.critical(self, 'Ошибка', 'Потеряно соединение с сервером!')
+                self.messages_chat.critical(
+                    self, 'Ошибка', 'Потеряно соединение с сервером!')
                 self.close()
             self.messages_chat.critical(self, 'Ошибка', 'Таймаут соединения!')
         except (ConnectionResetError, ConnectionAbortedError):
-            self.messages_chat.critical(self, 'Ошибка', 'Потеряно соединение с сервером!')
+            self.messages_chat.critical(
+                self, 'Ошибка', 'Потеряно соединение с сервером!')
             self.close()
         else:
             if response:
                 print(response)
                 self.messages_chat.information(self, 'Упс!', response)
             else:
-                self.database.save_message(self.current_chat, 'out', message_text)
-                logger.debug(f'Отправлено сообщение для {self.current_chat}: {message_text}')
+                self.database.save_message(
+                    self.current_chat, 'out', message_text)
+                logger.debug(
+                    f'Отправлено сообщение для {self.current_chat}: {message_text}')
                 self.history_list_update()
-
-    # Слот приёма нового сообщений
-    # @pyqtSlot(str)
-    # def message(self, sender):
-    #     self.history_list_update()

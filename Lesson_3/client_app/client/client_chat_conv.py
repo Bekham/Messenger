@@ -12,6 +12,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_ChatClientWindow(object):
+    """
+    Диалог обмена сообщениями с контактом. Описание оболочки
+    """
     def setupUi(self, ChatClientWindow):
         ChatClientWindow.setObjectName("MainClientWindow")
         ChatClientWindow.resize(460, 465)

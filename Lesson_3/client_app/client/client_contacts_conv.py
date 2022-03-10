@@ -12,6 +12,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_MainClientWindow(object):
+    """
+    Диалог основного окна выбора контактов для общения. Описание оболочки
+    """
     def setupUi(self, MainClientWindow):
         MainClientWindow.setObjectName("MainClientWindow")
         MainClientWindow.resize(270, 534)
